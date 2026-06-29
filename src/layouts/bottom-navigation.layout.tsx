@@ -1,0 +1,305 @@
+import React, { useState, MouseEvent } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { Box } from "@mui/material";
+
+import {
+  DashboardIcon,
+  InvoicesIcon,
+  MarketingIcons,
+  MessagesIcons,
+  // TaskIcons,
+  EditIcons,
+  ForumIcons,
+  ListIcons,
+  TaskIcons,
+  SupportIcons,
+  MonitorIcons,
+} from "uiKit";
+import theme from "theme";
+import { useUnreadMessages } from "hooks/useUnreadMessages.hook";
+
+interface NavigationItem {
+  title: string;
+  icon: any;
+  link?: string;
+  submenu?: NavigationItem[];
+}
+
+const BottomItems: NavigationItem[] = [
+  {
+    title: "داشبورد",
+    icon: (color: any) => <DashboardIcon color={color} />,
+    link: "/student/dashboard",
+  },
+  {
+    title: "جلسات",
+    icon: (color: any) => <MonitorIcons color={color} />,
+    link: "/student/sessions",
+  },
+  {
+    title: "دوره‌ها",
+    icon: (color: any) => <TaskIcons color={color} />,
+    link: "/student/courses",
+  },
+  {
+    title: "پیام ها",
+    icon: (color: any) => <MessagesIcons color={color} />,
+    link: "/student/messages",
+  },
+  {
+    title: "بیشتـــــــــر",
+    icon: (color: any) => <MenuIcon color={color} />,
+    submenu: [
+      {
+        title: "گزارش مالی",
+        icon: (color: any) => <InvoicesIcon color={color} />,
+        link: "/student/financial-reports/sales-income",
+      },
+      {
+        title: "تکالیف",
+        icon: (color: any) => <TaskIcons color={color} />,
+        link: "/",
+      },
+      {
+        title: "  حساب کاربــــــــری",
+        icon: (color: any) => <EditIcons color={color} />,
+        link: "/student/account/general-info",
+      },
+      {
+        title: "فــــــــــروم",
+        icon: (color: any) => <ForumIcons color={color} />,
+        link: "https://etekanesh.com/dashboard/go-to-forum/",
+      },
+      {
+        title: "پشتیبانی",
+        icon: (color: any) => <SupportIcons color={color} />,
+        link: "/",
+      },
+    ],
+  },
+];
+
+export const BottomNavigationLayout: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [value, setValue] = useState<string>(location.pathname || "");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const totalUnreadMessages = useUnreadMessages();
+
+  const handleMenuOpen = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(_event, newValue: string) => {
+          setValue(newValue || "");
+          navigate(newValue || "");
+        }}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
+          height: 65,
+          zIndex: 1000,
+          padding: 0,
+          "& .MuiBottomNavigationAction-label.Mui-selected": {
+            fontSize: 10,
+          },
+          "& .MuiBottomNavigationAction-root": {
+            gap: "6px",
+            fontSize: 10,
+          },
+          "& .MuiBottomNavigationAction-label": {
+            fontSize: 10,
+          },
+          "& .MuiBottomNavigation-root": {
+            padding: 0,
+          },
+        }}
+      >
+        {BottomItems.map((item) =>
+          item.submenu ? (
+            <BottomNavigationAction
+              key={item.title}
+              label={item.title}
+              icon={item.icon(
+                location.pathname === item.link
+                  ? theme.palette.primary[600]
+                  : theme.palette.grey[600],
+              )}
+              onClick={handleMenuOpen}
+            />
+          ) : (
+            <BottomNavigationAction
+              key={item.link || item.title}
+              label={item.title}
+              icon={
+                <Box position="relative">
+                  {item.icon(
+                    item.link === "/"
+                      ? theme.palette.grey[300]
+                      : location.pathname === item.link
+                        ? theme.palette.primary[600]
+                        : theme.palette.grey[600],
+                  )}
+                  {item.title === "پیام ها" && totalUnreadMessages > 0 && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: -2,
+                        right: -2,
+                        backgroundColor: theme.palette.error[500],
+                        color: "white",
+                        borderRadius: "50%",
+                        minWidth: 16,
+                        height: 16,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 9,
+                        fontWeight: 600,
+                        padding: "2px 4px",
+                        animation: "pulse 2s infinite",
+                        "@keyframes pulse": {
+                          "0%": {
+                            transform: "scale(1)",
+                            boxShadow: "0 0 0 0 rgba(244, 67, 54, 0.7)",
+                          },
+                          "70%": {
+                            transform: "scale(1.1)",
+                            boxShadow: "0 0 0 4px rgba(244, 67, 54, 0)",
+                          },
+                          "100%": {
+                            transform: "scale(1)",
+                            boxShadow: "0 0 0 0 rgba(244, 67, 54, 0)",
+                          },
+                        },
+                      }}
+                    >
+                      {totalUnreadMessages > 9 ? "9+" : totalUnreadMessages}
+                    </Box>
+                  )}
+                </Box>
+              }
+              value={item.link || ""}
+              onClick={() => {
+                if (item.link && item.link !== "/") navigate(item.link);
+              }}
+              sx={{
+                color:
+                  item.link === "/"
+                    ? theme.palette.grey[300]
+                    : location.pathname === item.link
+                      ? theme.palette.primary[600]
+                      : theme.palette.grey[600],
+                fontSize: "12px",
+                cursor: item.link === "/" ? "not-allowed" : "pointer",
+              }}
+              disabled={item.link === "/"}
+            />
+          ),
+        )}
+      </BottomNavigation>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+        sx={{
+          "& .MuiPaper-root": {
+            border: "1px solid ",
+            borderColor: theme.palette.grey[400],
+            borderRadius: "11px",
+            boxShadow: "-12px 0px 67.1px 0px #6B857E17",
+          },
+          "& .MuiPaper-root ul": {
+            gap: "0 !important",
+            paddingBottom: "10px !important",
+            padding: "8px",
+            borderBottom: "none",
+          },
+          "& .MuiMenuItem-root": {
+            padding: "8px",
+          },
+        }}
+        // slotProps={{
+        //   paper: {
+        //     elevation: 0,
+
+        //     sx: {
+        //       overflow: "visible",
+        //       mt: "10px",
+
+        //       "&::before": {
+        //         content: '""',
+        //         display: "block",
+        //         position: "absolute",
+        //         top: 138,
+        //         left: 10,
+        //         width: 10,
+        //         height: 10,
+        //         bgcolor: "background.paper",
+        //         transform: "translateY(-50%) rotate(50deg)",
+        //         zIndex: 0,
+        //       },
+        //     },
+        //   },
+        // }}
+        transformOrigin={{ horizontal: "right", vertical: "bottom" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      >
+        {BottomItems.find((item) => item.submenu)?.submenu?.map((subItem) => (
+          <MenuItem
+            key={subItem.link || subItem.title}
+            onClick={() => {
+              if (subItem.link && subItem.link !== "/") {
+                if (subItem.link.startsWith("http")) {
+                  window.open(subItem.link, "_blank");
+                } else {
+                  navigate(subItem.link);
+                }
+              }
+              handleMenuClose();
+            }}
+            disabled={subItem.link === "/"}
+            sx={{
+              color:
+                subItem.link === "/"
+                  ? theme.palette.grey[400]
+                  : location.pathname === subItem.link
+                    ? theme.palette.primary[600]
+                    : theme.palette.grey[600],
+              fontSize: "12px",
+              cursor: subItem.link === "/" ? "not-allowed" : "pointer",
+            }}
+          >
+            <Box display={"flex"} gap={"4px"} alignItems="center">
+              {subItem.icon(
+                subItem.link && location.pathname === subItem.link
+                  ? theme.palette.primary[600]
+                  : theme.palette.grey[600],
+              )}{" "}
+              {subItem.title}
+            </Box>
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
+  );
+};
