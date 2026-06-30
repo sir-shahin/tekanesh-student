@@ -16,13 +16,22 @@ import theme from "theme";
 import { HeaderLayout } from "layouts";
 import { BreadCrumbsModel } from "core/types";
 import {
+  CopyIcon,
+  DashboardIcon,
   LineChartKit,
   ListIcons,
   MonitorMobileIcons,
   PieChartKit,
   SettingIcon,
 } from "uiKit";
-import { DrawerStudents, InfoDashboard, TableStudents } from "components";
+import {
+  DrawerStudents,
+  InfoDashboard,
+  LastSession,
+  LevelProgress,
+  SummaryTask,
+  TableStudents,
+} from "components";
 import { useDashboardStore } from "store/useDashboard.store";
 import { PieChartKitDollar } from "uiKit/PieChartKitDollar";
 import { LineChartKitDollar } from "uiKit/LineChartKitDollar";
@@ -96,8 +105,6 @@ export const DashboardPage: React.FC = () => {
           },
         }}
       >
-        <InfoDashboard />
-
         <Paper
           elevation={0}
           sx={{
@@ -105,7 +112,7 @@ export const DashboardPage: React.FC = () => {
             bgcolor: "white",
             borderRadius: "10px",
             padding: "24px 28px",
-            [theme.breakpoints.down("sm")]: {
+            sm: {
               borderRadius: 0,
               padding: "unset",
             },
@@ -114,9 +121,10 @@ export const DashboardPage: React.FC = () => {
           <Box
             display={"flex"}
             flexDirection={"column"}
+            mb={1.5}
             gap={"17px"}
             sx={{
-              [theme.breakpoints.down("sm")]: {
+              sm: {
                 gap: "21px",
               },
             }}
@@ -126,131 +134,82 @@ export const DashboardPage: React.FC = () => {
               flexDirection={"column"}
               gap={"23px"}
               sx={{
-                [theme.breakpoints.down("sm")]: {
+                sm: {
                   gap: "12px",
                 },
               }}
             >
-              <Box
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
+              <Box display={"flex"} alignItems={"center"}>
                 <Box display={"flex"} gap={"10px"} alignItems={"center"}>
-                  <MonitorMobileIcons />
+                  <DashboardIcon color={theme.palette.primary[600]} />
                   <Typography
                     fontSize={"16px"}
                     fontWeight={700}
                     color={theme.palette.grey[500]}
                   >
-                    جزئیات درآمد
+                    دوره جامع آموزش فریلنسری در پلتفرم آپورک
                   </Typography>
                 </Box>
-
-                <Button
-                  id="basic-button"
-                  aria-controls={openCurrency ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={openCurrency ? "true" : undefined}
-                  onClick={handleClick}
-                  sx={{ padding: "0px", minWidth: "28px" }}
-                >
-                  <SettingIcon />
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={openCurrency}
-                  onClose={handleCloseCurrency}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                  sx={{
-                    "& .MuiPaper-root": {
-                      border: "1px solid ",
-                      borderColor: theme.palette.grey[400],
-                      borderRadius: "10px",
-                      boxShadow: "-12px 0px 67.1px 0px #6B857E17",
-                      width: "117px",
-                    },
-                    "& .MuiPaper-root ul": {
-                      gap: "0px !important",
-                      paddingBottom: "6px !important",
-                      padding: "6px",
-                      borderBottom: "none",
-                    },
-                    "& .MuiPaper-root li": {
-                      padding: "5px 6px",
-                      borderRadius: "5px",
-                      fontSize: "11px",
-                      color: theme.palette.grey[600],
-                    },
-                  }}
-                  slotProps={{
-                    paper: {
-                      elevation: 0,
-
-                      sx: {
-                        overflow: "visible",
-                        mt: "10px",
-
-                        "&::before": {
-                          content: '""',
-                          display: "block",
-                          position: "absolute",
-                          top: 0,
-                          left: 23,
-                          width: 10,
-                          height: 10,
-                          bgcolor: "background.paper",
-                          transform: "translateY(-50%) rotate(45deg)",
-                          zIndex: 0,
-                        },
-                      },
-                    },
-                  }}
-                  transformOrigin={{ horizontal: "right", vertical: "top" }}
-                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-                >
-                  <MenuItem onClick={() => setChangesCharts("dollar")}>
-                    دلاری
-                  </MenuItem>
-                  <MenuItem onClick={() => setChangesCharts("rial")}>
-                    ریالی
-                  </MenuItem>
-                </Menu>
               </Box>
-              {changeCharts === "rial" ? (
-                <Box
-                  display={"flex"}
-                  gap={"11px"}
-                  sx={{
-                    [theme.breakpoints.down("sm")]: {
-                      flexDirection: "column",
-                      gap: "19px",
-                    },
-                  }}
-                >
+
+              <Box
+                display={"flex"}
+                gap={"11px"}
+                sx={{
+                  sm: {
+                    flexDirection: "column",
+                    gap: "19px",
+                  },
+                }}
+              >
+                <Box flex={1} gap={1} display={"flex"} flexDirection={"column"}>
                   <PieChartKit />
-                  <LineChartKit />
+                  <LevelProgress />
                 </Box>
-              ) : (
-                <Box
-                  display={"flex"}
-                  gap={"11px"}
-                  sx={{
-                    [theme.breakpoints.down("sm")]: {
-                      flexDirection: "column",
-                      gap: "19px",
-                    },
-                  }}
-                >
-                  <PieChartKitDollar />
-                  <LineChartKitDollar />
+
+                <Box flex={1.4}>
+                  <Box
+                    bgcolor={theme.palette.grey[50]}
+                    display={"flex"}
+                    p={1.5}
+                    borderRadius={3}
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                    mb={1.5}
+                  >
+                    <Box display={"flex"} alignItems={"center"}>
+                      <Box
+                        bgcolor={"#F27575"}
+                        width={46}
+                        height={46}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        display={"flex"}
+                        borderRadius={3}
+                      >
+                        <CopyIcon />
+                      </Box>
+                      <Typography pr={2}>
+                        کارهای امـــــروز و این هفته ی مـــــن
+                      </Typography>
+                    </Box>
+                    <Typography
+                      fontWeight={"bold"}
+                      fontSize={22}
+                      color="#F27575"
+                      px={1}
+                    >
+                      2
+                    </Typography>
+                  </Box>
+
+                  <SummaryTask />
                 </Box>
-              )}
+              </Box>
             </Box>
           </Box>
+
+          <LastSession />
         </Paper>
       </Box>
     </>

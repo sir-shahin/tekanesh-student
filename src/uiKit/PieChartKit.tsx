@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Box, Button, styled } from "@mui/material";
+
+import { Box, Stack, styled, Typography } from "@mui/material";
 import { pieArcLabelClasses, PieChart, useDrawingArea } from "@mui/x-charts";
 
 import theme from "theme";
@@ -63,6 +63,7 @@ export const PieChartKit: React.FC = () => {
   const StyledText = styled("text")(() => ({
     textAnchor: "middle",
     dominantBaseline: "central",
+    fill: theme.palette.primary[400],
   }));
 
   function PieCenterLabel({ children }: { children: React.ReactNode }) {
@@ -84,78 +85,41 @@ export const PieChartKit: React.FC = () => {
 
   return (
     <Box
-      flexGrow={1}
-      padding={"23px 17px 17px"}
+      flex={1}
+      padding={"23px 17px 0 17px"}
       border={`1px solid ${theme.palette.grey[400]}`}
       borderRadius={"10px"}
       sx={{
-        [theme.breakpoints.down("sm")]: {
+        sm: {
           padding: "19px 15px",
         },
       }}
     >
+      <Stack direction={"row"}>
+        <Typography>درصد پیشرفت شما</Typography>
+      </Stack>
       <Box
         display={"flex"}
-        justifyContent={"space-between"}
+        flexDirection={"column"}
+        gap={"2px"}
+        justifyContent={"center"}
         alignItems={"center"}
-        textAlign={"center"}
       >
-        <Button
-          onClick={nextMonth}
-          disabled={isNextDisabled}
-          sx={{
-            border: "none",
-            background: "none",
-            cursor: isNextDisabled ? "not-allowed" : "pointer",
-            fontSize: "20px",
-            color: isNextDisabled
-              ? theme.palette.grey[400]
-              : theme.palette.grey[600],
-          }}
-        >
-          <KeyboardArrowRight />
-        </Button>
-
-        <span
-          style={{
-            fontSize: "16px",
-            fontWeight: "bold",
-            color: theme.palette.grey[500],
-          }}
-        >
-          {months[currentMonthIndex - 1]} {currentYear}
-        </span>
-
-        <Button
-          onClick={prevMonth}
-          sx={{
-            border: "none",
-            background: "none",
-            cursor: "pointer",
-            fontSize: "20px",
-            color: theme.palette.grey[600],
-          }}
-        >
-          <KeyboardArrowLeft />
-        </Button>
-      </Box>
-
-      <Box display={"flex"} flexDirection={"column"} gap={"2px"} justifyContent={"center"} alignItems={"center"}>
         <PieChart
           series={[
             {
               data: [
                 {
                   id: 0,
-                  value: dashboardMonthlyData?.intial_amount || 0,
+                  value: dashboardMonthlyData?.intial_amount || 30,
                   label: "مجموع پیش پرداخت ها",
-                  color: theme.palette.primary[300],
+                  color: theme.palette.primary[400],
                 },
                 {
                   id: 1,
-                  value: dashboardMonthlyData?.installment_amount || 0,
+                  value: dashboardMonthlyData?.installment_amount || 10,
                   label: "مجموع پرداخت اقساط",
-                  color: "#4DB2D2",
+                  color: "#ddd",
                 },
               ],
               innerRadius: 70,
@@ -169,12 +133,13 @@ export const PieChartKit: React.FC = () => {
             },
           ]}
           width={250}
-          height={400}
+          height={350}
           slotProps={{
             legend: {
-              direction: "row",
-              position: { vertical: "bottom", horizontal: "middle" },
-              padding: 0,
+              hidden: true,
+              // direction: "row",
+              // position: { vertical: "bottom", horizontal: "middle" },
+              // padding: 50,
             },
             popper: {
               placement: "left-end",
@@ -208,58 +173,14 @@ export const PieChartKit: React.FC = () => {
               rx: "50%",
             },
           }}
-          margin={{ top: -50, left: 0 }}
+          margin={{ top: -10, left: 0 }}
         >
           <PieCenterLabel>
-            
-            <tspan
-              fontSize={"33px"}
-              fontWeight={700}
-              // dy={"-5px"}
-              // dx={0}
-              // dominantBaseline={"central"}
-              fill={theme.palette.grey[500]}
-            >
-              {(totalIncome / 1000000).toFixed(2)}
-            </tspan>
-            </PieCenterLabel>
-            <PieCenterLabel>
-            <tspan
-              fontSize={"13px"}
-              fontWeight={700}
-              dy={"25px"}
-              // dx={"0"}
-              // dominantBaseline={""}
-              fill={theme.palette.grey[600]}
-              style={{
-                marginTop: "4px"
-              }}
-            >
-              میلیون تومان
+            <tspan fontSize={"53px"} fontWeight={700}>
+              ☻
             </tspan>
           </PieCenterLabel>
         </PieChart>
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{
-            height: "34px",
-            fontSize: "16px",
-            fontWeight: 500,
-            backgroundColor: theme.palette.primary[600],
-          }}
-          onClick={() => {
-            const url = `https://etekanesh.com/panel-admin/teacher/general/courses/factor/?year=${currentYear}&month=${currentMonthIndex}`;
-            window.open(
-              url,
-              "factorWindow",
-              "width=600,height=400,scrollbars=yes,resizable=yes"
-            );;
-          }}
-          fullWidth
-        >
-          {`فاکتور ${months[currentMonthIndex - 1]}`}
-        </Button>
       </Box>
     </Box>
   );
