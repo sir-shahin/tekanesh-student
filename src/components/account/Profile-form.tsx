@@ -343,44 +343,7 @@ export const ProfileForm: React.FC<Props> = ({ userData }) => {
           </LocalizationProvider>
         </Box>
       </Box>
-      <Box
-        display={"flex"}
-        justifyContent={"space-between"}
-        flexDirection={isMobile ? "column" : "row"}
-        gap={"12px"}
-      >
-        <Box
-          display={"flex"}
-          gap={"8px"}
-          alignItems={"center"}
-          justifyContent={isMobile ? "space-between" : "flex-start"}
-        >
-          <Typography fontSize={"12px"}>وضعیت اتصال به ربات تلگرام</Typography>
-          {userData?.telegram_status ? (
-            <CustomButton
-              variant="contained"
-              sx={{
-                backgroundColor: "#4DB2D2",
-                fontWeight: 500,
-                height: "34px",
-              }}
-              disabled
-            >
-              متصل شده
-            </CustomButton>
-          ) : (
-            <CustomButton
-              variant="contained"
-              sx={{
-                backgroundColor: "#4DB2D2",
-                fontWeight: 500,
-                height: "34px",
-              }}
-            >
-              اتصال به تلگــــــــــــرام
-            </CustomButton>
-          )}
-        </Box>
+      <Box display={"flex"} justifyContent={"end"} my={5}>
         {/* Submit Button */}
         <Button
           type="submit"
