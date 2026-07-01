@@ -1,8 +1,12 @@
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
+import {
+  AssignmentListKit,
+  AssignmentsFilterKit,
+} from "components/assignments";
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
 import theme from "theme";
-import { HomeworkIcons, TaskIcons } from "uiKit";
+import { HomeworkIcons } from "uiKit";
 
 const breadcrumbData: BreadCrumbsModel[] = [
   {
@@ -37,6 +41,7 @@ export const Assignments = () => {
           justifyContent={"space-between"}
           flexDirection={"column"}
           gap={"24px"}
+          mb={3}
         >
           <Box display={"flex"} gap={"10px"} alignItems={"center"}>
             <HomeworkIcons
@@ -53,6 +58,18 @@ export const Assignments = () => {
             </Typography>
           </Box>
         </Box>
+
+        <AssignmentsFilterKit
+          searchQuery=""
+          setSearchQuery={() => {}}
+          selectedTaskStatus=""
+          setSelectedTaskStatus={() => {}}
+          grouplancingStatusOptions={[1]}
+          taskStatusOptions={[1]}
+          triggerSearch={() => {}}
+        />
+
+        <AssignmentListKit />
       </Paper>
     </>
   );

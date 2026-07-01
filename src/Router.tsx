@@ -22,6 +22,8 @@ import {
   SessionsPage,
   SessionDetails,
   Assignments,
+  Timeline,
+  UploadAssignments,
 } from "pages";
 import NotFound from "pages/NotFound";
 import CourseInfoPage from "pages/Courses/CourseInfo.pages";
@@ -99,6 +101,12 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="/student/assignments" element={<MainLayout />}>
         <Route index element={<Assignments />} />
+      </Route>
+      <Route path="/student/assignments/:id" element={<MainLayout />}>
+        <Route index element={<Timeline />} />
+      </Route>
+      <Route path="/student/assignments/upload/:id" element={<MainLayout />}>
+        <Route index element={<UploadAssignments />} />
       </Route>
     </>,
   ),
