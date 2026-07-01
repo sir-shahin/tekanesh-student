@@ -167,7 +167,7 @@ const SidebarMenu: SideMenu = [
   {
     title: "پشتیبانـــــــی",
     icon: (color: any) => <SupportIcons color={color} />,
-    link: "/",
+    link: "/student/supports",
   },
 ];
 

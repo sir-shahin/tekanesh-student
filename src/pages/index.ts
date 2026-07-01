@@ -9,3 +9,4 @@ export * from "./Students";
 export * from "./Login";
 export * from "./Sessions";
 export * from "./Assignments";
+export * from "./Support";

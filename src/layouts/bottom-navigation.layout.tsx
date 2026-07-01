@@ -79,7 +79,7 @@ const BottomItems: NavigationItem[] = [
       {
         title: "پشتیبانی",
         icon: (color: any) => <SupportIcons color={color} />,
-        link: "/",
+        link: "/student/supports",
       },
     ],
   },
