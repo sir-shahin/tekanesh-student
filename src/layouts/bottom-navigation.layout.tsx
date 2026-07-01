@@ -19,6 +19,7 @@ import {
   TaskIcons,
   SupportIcons,
   MonitorIcons,
+  HomeworkIcons,
 } from "uiKit";
 import theme from "theme";
 import { useUnreadMessages } from "hooks/useUnreadMessages.hook";
@@ -62,8 +63,8 @@ const BottomItems: NavigationItem[] = [
       },
       {
         title: "تکالیف",
-        icon: (color: any) => <TaskIcons color={color} />,
-        link: "/",
+        icon: (color: any) => <HomeworkIcons color={color} />,
+        link: "/student/assignments",
       },
       {
         title: "  حساب کاربــــــــری",

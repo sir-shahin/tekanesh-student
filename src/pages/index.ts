@@ -8,3 +8,4 @@ export * from "./Messages";
 export * from "./Students";
 export * from "./Login";
 export * from "./Sessions";
+export * from "./Assignments";

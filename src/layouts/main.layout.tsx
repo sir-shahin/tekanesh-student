@@ -129,8 +129,7 @@ const SidebarMenu: SideMenu = [
   {
     title: "تکالیـــــــــف",
     icon: (color: any) => <HomeworkIcons color={color} />,
-    // link: "/teacher/courses",
-    link: "/",
+    link: "/student/assignments",
   },
   {
     title: "پیــــــــام ها",
