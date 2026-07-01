@@ -24,6 +24,7 @@ import {
   Assignments,
   Timeline,
   UploadAssignments,
+  Reports,
 } from "pages";
 import NotFound from "pages/NotFound";
 import CourseInfoPage from "pages/Courses/CourseInfo.pages";
@@ -107,6 +108,9 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="/student/assignments/upload/:id" element={<MainLayout />}>
         <Route index element={<UploadAssignments />} />
+      </Route>
+      <Route path="/student/financial-reports" element={<MainLayout />}>
+        <Route index element={<Reports />} />
       </Route>
     </>,
   ),

@@ -5,7 +5,7 @@ import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import theme from "theme";
 import { HeaderLayout } from "layouts/header.layout";
 import { BreadCrumbsModel } from "core/types";
-import { HomeworkIcons } from "uiKit";
+import { DocumentUploadIcon, HomeworkIcons } from "uiKit";
 
 export const UploadAssignments: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -124,7 +124,7 @@ export const UploadAssignments: React.FC = () => {
                 borderRadius="50%"
                 bgcolor={theme.palette.primary[100]}
               >
-                <HomeworkIcons
+                <DocumentUploadIcon
                   color={theme.palette.primary[500]}
                   width={28}
                   height={28}

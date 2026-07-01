@@ -50,3 +50,6 @@ export * from "./homework.icons";
 export * from "./support.icons";
 export * from "./camera.icons";
 export * from "./document-download.icons";
+export * from "./hand-coin-2.icons";
+export * from "./hand-coin.icons";
+export * from "./note.icons";
