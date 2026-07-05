@@ -4,8 +4,8 @@ import { HeaderLayout } from "layouts/header.layout";
 import theme from "theme";
 import React from "react";
 import { SupportIcons } from "uiKit";
-import TicketTabs from "./components/TicketTabs";
-import NewTicketModal from "./components/NewTicketModal";
+import TicketTabs from "../../components/support/TicketTabs";
+import NewTicketModal from "../../components/support/NewTicketModal";
 
 type Ticket = {
   id: string;

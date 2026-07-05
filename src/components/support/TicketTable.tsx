@@ -81,7 +81,7 @@ export const TicketTable: React.FC<Props> = ({ rows }) => {
               </TableCell>
               <TableCell align="right">
                 <Button
-                  href={`/`}
+                  href={`/student/supports/10`}
                   sx={{
                     border: 1,
                     borderColor: "#ccc",

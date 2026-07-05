@@ -29,6 +29,7 @@ import {
 } from "pages";
 import NotFound from "pages/NotFound";
 import CourseInfoPage from "pages/Courses/CourseInfo.pages";
+import TicketMessages from "pages/Support/Messages.pages";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -115,6 +116,9 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="/student/supports" element={<MainLayout />}>
         <Route index element={<Tickets />} />
+      </Route>
+      <Route path="/student/supports/:id" element={<MainLayout />}>
+        <Route index element={<TicketMessages />} />
       </Route>
     </>,
   ),

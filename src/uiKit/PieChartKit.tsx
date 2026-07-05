@@ -112,13 +112,11 @@ export const PieChartKit: React.FC = () => {
                 {
                   id: 0,
                   value: dashboardMonthlyData?.intial_amount || 30,
-                  label: "مجموع پیش پرداخت ها",
                   color: theme.palette.primary[400],
                 },
                 {
                   id: 1,
                   value: dashboardMonthlyData?.installment_amount || 10,
-                  label: "مجموع پرداخت اقساط",
                   color: "#ddd",
                 },
               ],
