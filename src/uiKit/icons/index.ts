@@ -53,3 +53,5 @@ export * from "./document-download.icons";
 export * from "./hand-coin-2.icons";
 export * from "./hand-coin.icons";
 export * from "./note.icons";
+export * from "./lamp.icons";
+export * from "./pen-edit.icons";

@@ -1,5 +1,10 @@
-import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
 import {
+  CheckCircleOutline,
+  Edit,
+  ErrorOutlineOutlined,
+} from "@mui/icons-material";
+import {
+  Avatar,
   Box,
   Chip,
   Divider,
@@ -11,7 +16,16 @@ import {
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
 import theme from "theme";
-import { SupportIcons } from "uiKit";
+import {
+  EditIcons,
+  LampIcon,
+  NoteIcon,
+  PenEditIcon,
+  PeopleIcons,
+  ProfileCircleIcons,
+  SupportIcons,
+} from "uiKit";
+import { RichEditor } from "uiKit/RichTextKit";
 
 export default function TicketMessages() {
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -31,6 +45,8 @@ export default function TicketMessages() {
       active: true,
     },
   ];
+
+  const handleEditorChange = (html: string) => {};
   return (
     <>
       <HeaderLayout title=" پشتیبانـــــــی" breadcrumb={breadcrumbData} />
@@ -41,20 +57,16 @@ export default function TicketMessages() {
           bgcolor: "white",
           borderRadius: "10px",
           padding: "24px 28px",
+          minHeight: "95%",
+          position: "relative",
           sm: {
             borderRadius: 0,
             padding: isMobile ? "0" : "unset",
           },
         }}
       >
-        <Box
-          display={"flex"}
-          justifyContent={"space-between"}
-          flexDirection={"column"}
-          gap={"24px"}
-          mb={3}
-        >
-          <Box display={"flex"} gap={"10px"} alignItems={"center"}>
+        <Box mb={3}>
+          <Box display={"flex"} mb={3} gap={"10px"} alignItems={"center"}>
             <SupportIcons
               color={theme.palette.primary[500]}
               width={22.5}
@@ -69,7 +81,7 @@ export default function TicketMessages() {
             </Typography>
           </Box>
 
-          <Stack direction={"row"} justifyContent={"space-between"}>
+          <Stack direction={"row"} mb={2} justifyContent={"space-between"}>
             <Box
               flexDirection={"row"}
               display={"flex"}
@@ -111,6 +123,69 @@ export default function TicketMessages() {
             />
           </Stack>
           <Divider />
+          <Box maxHeight={"53vh"} overflow={"auto"}>
+            {/* message */}
+            {[0].map((item) => (
+              <Box color={"inherit"} pt={3}>
+                <Stack
+                  direction={"row"}
+                  mb={3}
+                  justifyContent={"space-between"}
+                >
+                  <Box display={"flex"} alignItems={"center"} gap={1}>
+                    <Avatar sx={{ bgcolor: theme.palette.primary[100] }}>
+                      {/* <ProfileCircleIcons /> */}
+                      <LampIcon color={theme.palette.primary[600]} />
+                    </Avatar>
+                    <Typography>پیام شما</Typography>
+                  </Box>
+
+                  <Box gap={2} display={"flex"}>
+                    <Divider flexItem orientation="vertical" sx={{ my: 1 }} />
+                    <Box>
+                      <Typography fontSize={10}>ســــــاعت ۱۰:۲۳:۰۰</Typography>
+                      <Typography fontSize={14}>
+                        ۲۹ فروردین ماه ۱۴۰۳{" "}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Stack>
+                <Box display={"flex"} gap={3}>
+                  <Divider
+                    flexItem
+                    orientation="vertical"
+                    sx={{ borderStyle: "dashed" }}
+                  />
+                  <Box
+                    sx={{ border: "1px dashed #ccc" }}
+                    borderRadius={2}
+                    width={"100%"}
+                    p={3}
+                    fontSize={13}
+                  >
+                    33
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+
+        <Box
+          position={"absolute"}
+          bottom={0}
+          right={0}
+          width={"100%"}
+          px={5}
+          pb={5}
+        >
+          <Box display={"flex"} alignItems={"center"} gap={2} mb={{ lg: -4 }}>
+            <Avatar>
+              <PenEditIcon color="gray" />
+            </Avatar>
+            <Typography>پیام شما</Typography>
+          </Box>
+          <RichEditor onContentChange={handleEditorChange} />
         </Box>
       </Paper>
     </>
