@@ -126,7 +126,7 @@ export default function TicketMessages() {
           <Box maxHeight={"53vh"} overflow={"auto"}>
             {/* message */}
             {[0].map((item) => (
-              <Box color={"inherit"} pt={3}>
+              <Box key={item} color={"inherit"} pt={3}>
                 <Stack
                   direction={"row"}
                   mb={3}
