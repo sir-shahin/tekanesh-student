@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect,useState } from "react";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import {
     Box,
     Divider,
@@ -9,12 +10,11 @@ import {
     Typography,
     useMediaQuery,
 } from "@mui/material";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-
 import theme from "theme";
-import PersianTypography from "core/utils/PersianTypoGraphy.utils";
-import { CourseLevelAcademyItem } from "core/types";
+
 import frame from "assets/frame.png";
+import { CourseLevelAcademyItem } from "core/types";
+import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 
 interface CustomBarChartProps {
     levelsDispersion?: CourseLevelAcademyItem["LevelsDispersion"];

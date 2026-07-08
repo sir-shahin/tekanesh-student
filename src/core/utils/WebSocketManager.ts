@@ -1,7 +1,7 @@
 
 
 interface MessageHandler {
-    [key: string]: (message: any) => void;
+    [key: string]: (message: SocketData) => void;
 }
 
 interface MessageHandlers {
@@ -11,39 +11,40 @@ interface MessageHandlers {
 }
 
 interface EventListeners {
-    open: Array<(event: any) => void>;
-    close: Array<(event: any) => void>;
-    error: Array<(event: any) => void>;
-    reconnect: Array<(info: any) => void>;
+    open: Array<(event: Event) => void>;
+    close: Array<(event: CloseEvent) => void>;
+    error: Array<(event: Event) => void>;
+    reconnect: Array<(info: { attempt: number; maxAttempts: number }) => void>;
 }
 
 type MessageData = {
-    action?: string,
-    data: any,
-    message_type: any,
-    status: boolean,
-    status_code: number,
-    type: "message",
-    extra?: any
-}
+    action?: string;
+    data: unknown;
+    message_type?: string;
+    status: boolean;
+    status_code: number;
+    type: "message";
+    extra?: unknown;
+};
 
 type EventData = {
-    action?: string,
-    data: any,
-    event_type: any,
-    status: boolean,
-    status_code: number,
-    type: "event",
-    extra?: any
-}
+    action?: string;
+    data: unknown;
+    event_type?: string;
+    status: boolean;
+    status_code: number;
+    type: "event";
+    extra?: unknown;
+};
+
 type ErrorData = {
-    detail: any,
-    error_type: any,
-    status: boolean,
-    status_code: number,
-    type: "error",
-    extra?: any
-}
+    detail: unknown;
+    error_type?: string;
+    status: boolean;
+    status_code: number;
+    type: "error";
+    extra?: unknown;
+};
 
 type SocketData = MessageData | EventData | ErrorData;
 
@@ -128,7 +129,7 @@ export default class WebSocketManager {
     }
 
 
-    send(data: any, force_to_connect: boolean = true): boolean {
+    send(data: unknown, force_to_connect = true): boolean {
         if (!this.socket) {
             console.error('Socket is dead');
             return false;
@@ -215,38 +216,38 @@ export default class WebSocketManager {
 
     private _handleMessage(event: MessageEvent): void {
         try {
-            const message: MessageData | EventData | ErrorData = JSON.parse(event.data);
-            const { type } = message
+            const message: SocketData = JSON.parse(event.data);
+            const { type } = message;
 
-            let msg_type: any;
+            let msgType: string | undefined;
             switch (type) {
-                case "message":
-                    msg_type = message.message_type
-                    if (msg_type == "data") { msg_type = message.action }
+                case "message": {
+                    const messageData = message as MessageData;
+                    msgType = messageData.message_type;
+                    if (msgType === "data") {
+                        msgType = messageData.action;
+                    }
                     break;
-                case "event":
-                    msg_type = message.event_type
+                }
+                case "event": {
+                    const eventData = message as EventData;
+                    msgType = eventData.event_type;
                     break;
-                case "error":
-                    msg_type = message.error_type
+                }
+                case "error": {
+                    const errorData = message as ErrorData;
+                    msgType = errorData.error_type;
                     break;
-
-            }
-
-            msg_type = msg_type
-
-
-            let handler = this.messageHandlers[type][msg_type]
-
-            if (handler && typeof handler == 'function') {
-                handler(message)
-            } else {
-                handler = this.messageHandlers[type]['default']
-                if (typeof handler == 'function') {
-                    handler(message)
                 }
             }
 
+            const handler =
+                (msgType && this.messageHandlers[type][msgType]) ||
+                this.messageHandlers[type]["default"];
+
+            if (handler && typeof handler === "function") {
+                handler(message);
+            }
         } catch (error) {
             console.error('Error parsing WebSocket message:', error);
         }
@@ -276,11 +277,11 @@ export default class WebSocketManager {
 
 
 
-    private _triggerEvent(event: keyof EventListeners, data: any): void {
+    private _triggerEvent(event: keyof EventListeners, data: unknown): void {
         if (this.eventListeners[event]) {
-            this.eventListeners[event].forEach(listener => {
+            this.eventListeners[event].forEach((listener) => {
                 try {
-                    listener(data);
+                    listener(data as Event);
                 } catch (error) {
                     console.error(`Error in ${event} event listener:`, error);
                 }

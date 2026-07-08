@@ -1,25 +1,21 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Box,
-  Typography,
-  useMediaQuery,
-  CircularProgress,
   Button,
-  Stack,
-  Paper,
   Chip,
   Divider,
+  Paper,
+  Stack,
+  Typography,
+  useMediaQuery,
 } from "@mui/material";
 import {
   DataGrid,
   GridColDef,
   GridPaginationModel,
   GridRenderCellParams,
-  GridSortModel,
 } from "@mui/x-data-grid";
 import theme from "theme";
-import { useFinancialStore } from "store/useFinancial.store";
-import { PersianConvertDate } from "core/utils";
 import { CustomPagination } from "uiKit";
 import { HandCoinIcon } from "uiKit";
 import { NoteDollarIcon } from "uiKit/icons/note-dollar.icons";
@@ -119,7 +115,7 @@ export const MainTable: React.FC = () => {
         headerAlign: "center",
         flex: 1,
         minWidth: 120,
-        renderCell: (params: GridRenderCellParams<any>) => {
+        renderCell: (params: GridRenderCellParams) => {
           const statusColor =
             params.value?.status === 1 ? "success" : "warning";
           return (

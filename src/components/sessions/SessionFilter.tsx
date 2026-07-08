@@ -1,15 +1,14 @@
 import React from "react";
 import {
-  Paper,
-  TextField,
-  FormControl,
-  Select,
-  MenuItem,
-  useMediaQuery,
-  InputAdornment,
   Box,
+  FormControl,
+  InputAdornment,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+  useMediaQuery,
 } from "@mui/material";
-
 import theme from "theme";
 import { SearchCustomIcon } from "uiKit";
 
@@ -25,7 +24,7 @@ type Props = {
 
   triggerSearch: () => void;
 
-  filterItems?: any;
+  filterItems?: Record<string, unknown>;
 };
 
 export const SessionFilterKit: React.FC<Props> = ({

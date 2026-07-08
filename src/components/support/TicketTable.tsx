@@ -1,19 +1,16 @@
 import React from "react";
+import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
 import {
+  Button,
+  Chip,
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
-  Paper,
-  IconButton,
   Typography,
-  Chip,
-  Button,
 } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
 import theme from "theme";
 import { EyeIcon } from "uiKit";
 

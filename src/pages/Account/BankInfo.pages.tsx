@@ -6,12 +6,12 @@ import {
     Typography,
     useMediaQuery,
 } from "@mui/material";
-
 import theme from "theme";
-import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "core/types";
 import { CustomButton, WalletIcon } from "uiKit";
+
 import { BankCard } from "components";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts";
 
 const breadcrumbData: BreadCrumbsModel[] = [
     {

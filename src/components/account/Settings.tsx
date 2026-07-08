@@ -1,9 +1,9 @@
 import {
   Box,
+  Switch,
   TextField,
   Typography,
   useMediaQuery,
-  Switch,
 } from "@mui/material";
 import theme from "theme";
 import { CustomButton } from "uiKit";

@@ -1,11 +1,6 @@
-import {
-  CheckCircleOutline,
-  ErrorOutlineOutlined,
-  Link,
-} from "@mui/icons-material";
-import { Box, Button, Chip, Divider, Stack, Typography } from "@mui/material";
-import theme from "theme";
-import { CalendarIcon, MonitorIcons } from "uiKit";
+
+
+import { Box, Button, Stack, Typography } from "@mui/material";
 
 import empty from "assets/empty-q.jpg";
 export const Ask = () => {

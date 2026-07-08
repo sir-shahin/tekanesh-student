@@ -1,15 +1,15 @@
 // CustomPagination.tsx (or inside your main file above your component)
 import React from "react";
+import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
+import { PaginationItem } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import {
+    gridPageCountSelector,
+    gridPageSelector,
     useGridApiContext,
     useGridSelector,
-    gridPageSelector,
-    gridPageCountSelector,
 } from "@mui/x-data-grid";
-import { PaginationItem } from "@mui/material";
-import WestIcon from "@mui/icons-material/West";
-import EastIcon from "@mui/icons-material/East";
 
 export const CustomPagination: React.FC = () => {
     const apiRef = useGridApiContext();

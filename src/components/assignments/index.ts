@@ -1,2 +1,2 @@
-export * from './AssignmentsFilter';
 export * from './AssignmentList';
+export * from './AssignmentsFilter';

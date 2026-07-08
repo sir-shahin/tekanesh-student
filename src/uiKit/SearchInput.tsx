@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
+import { InputAdornment, TextField } from "@mui/material";
 import theme from "theme";
 
 type Props = {
-  placeholderText: any;
+  placeholderText: string;
   onSearch: (value: string) => void;
 };
 

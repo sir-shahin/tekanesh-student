@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { chartsGridClasses, LineChart } from "@mui/x-charts";
-
 import theme from "theme";
+
 import { useMarketingStore } from "store/useMarketing.store";
 
 export const LineChartMarketing: React.FC = () => {

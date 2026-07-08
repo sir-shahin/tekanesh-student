@@ -7,6 +7,8 @@ import {
   Snackbar,
   Typography,
 } from "@mui/material";
+import theme from "theme";
+import { CopyIcon, DirectSaleIcon, ListIcons } from "uiKit";
 
 import {
   DirectSaleTeacherTable,
@@ -15,8 +17,6 @@ import {
 } from "components/marketing";
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
-import theme from "theme";
-import { CopyIcon, DirectSaleIcon, ListIcons } from "uiKit";
 import { useMarketingStore } from "store/useMarketing.store";
 
 const breadcrumbData: BreadCrumbsModel[] = [

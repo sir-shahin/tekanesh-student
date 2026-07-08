@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Box, Chip, Divider, Typography } from "@mui/material";
 // import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
-
 import theme from "theme";
 import { MessageTimeIcon, NoteIcon, WalletIcon } from "uiKit";
-import teacherWithoutLabel from "assets/teacher-without-label.png";
+
 import bestContentTeacherLabel from "assets/best-content-teacher-label.png";
 import effectiveTeacherLabel from "assets/effective-teacher-label.png";
 import professionalTeacherLabel from "assets/professional-teacher-label.png";
 import regularTeacherLabel from "assets/regular-teacher-label.png";
 import responsibleTeacherLabel from "assets/responsible-teacher-label.png";
+import teacherWithoutLabel from "assets/teacher-without-label.png";
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 import { useDashboardStore } from "store/useDashboard.store";
 

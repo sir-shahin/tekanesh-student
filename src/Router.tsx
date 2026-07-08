@@ -7,28 +7,28 @@ import {
 
 import { MainLayout } from "layouts";
 import {
-  DashboardPage,
-  StudentsPage,
-  SalesIncomePage,
-  GeneralInfoPage,
-  StudentIncomePage,
-  MessagesPage,
-  SalesIncomeManagementPage,
   AssignmentPage,
-  CoursesPage,
-  WebinarsManagementPages,
-  DirectSaleTeacherPages,
-  LoginPages,
-  SessionsPage,
-  SessionDetails,
   Assignments,
+  CoursesPage,
+  DashboardPage,
+  DirectSaleTeacherPages,
+  GeneralInfoPage,
+  LoginPages,
+  MessagesPage,
+  Reports,
+  SalesIncomeManagementPage,
+  SalesIncomePage,
+  SessionDetails,
+  SessionsPage,
+  StudentIncomePage,
+  StudentsPage,
+  Tickets,
   Timeline,
   UploadAssignments,
-  Reports,
-  Tickets,
+  WebinarsManagementPages,
 } from "pages";
-import NotFound from "pages/NotFound";
 import CourseInfoPage from "pages/Courses/CourseInfo.pages";
+import NotFound from "pages/NotFound";
 import TicketMessages from "pages/Support/Messages.pages";
 
 export const router = createBrowserRouter(

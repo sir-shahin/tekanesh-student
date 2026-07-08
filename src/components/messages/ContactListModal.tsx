@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box, CircularProgress, Typography, InputBase } from "@mui/material";
-
+import { Box, CircularProgress, InputBase,Typography } from "@mui/material";
 import theme from "theme";
-import { useStudentsStore } from "store/useStudents.store";
 import { ListIcons } from "uiKit";
+
+import { useStudentsStore } from "store/useStudents.store";
 
 type Props = {
     onClickMessage: (userName: string, userId: string) => void;

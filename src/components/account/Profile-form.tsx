@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller,useForm } from "react-hook-form";
 import {
-  TextField,
-  Button,
   Box,
+  Button,
+  Modal,
+  TextField,
   Typography,
   useMediaQuery,
-  Modal,
 } from "@mui/material";
-import moment from "moment-jalaali";
 import { AdapterMomentJalaali } from "@mui/x-date-pickers/AdapterMomentJalaali";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-// import { IconButton } from "@mui/material";
-
-// import addImage from "assets/gallery-add.png";
-import { CustomButton, EditIcons } from "uiKit";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import moment from "moment-jalaali";
 import theme from "theme";
+// import { IconButton } from "@mui/material";
+// import addImage from "assets/gallery-add.png";
+import { EditIcons } from "uiKit";
+
 import { postUser } from "core/services";
 import { UsersDataTypes } from "core/types";
 import { getRoleName } from "core/utils";

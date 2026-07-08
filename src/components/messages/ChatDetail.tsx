@@ -1,9 +1,9 @@
 import React, {
-  useEffect,
-  useState,
-  useRef,
   useCallback,
   useContext,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
 import {
   Box,
@@ -11,34 +11,60 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-
-import { useUsersStore } from "store/useUsers.store";
-import { getWSChatURL } from "core/services";
 import theme from "theme";
 import { ProfileCircleIcons } from "uiKit";
-import { ChatTextInput } from "./ChatTextInput";
-import { ChatDetailItem } from "./ChatDetailItem";
+
+import { getWSChatURL } from "core/services";
+import { useUsersStore } from "store/useUsers.store";
+
 import { SocketContext } from "../../contexts/SocketContext.contexts";
+import { ChatDetailItem } from "./ChatDetailItem";
+import { ChatTextInput } from "./ChatTextInput";
+
+type ChatApp = {
+  send: (payload: { action: string }) => void;
+  on: (
+    messageType: "message" | "event",
+    action: string,
+    handler: (message: unknown) => void,
+  ) => void;
+};
 
 type Props = {
   selectedChat: string;
   onMessageSent?: () => void;
-  chatApp: any; // 👈 اضافه شد
+  chatApp: ChatApp;
 };
-
 
 type Message = {
-    content: string;
-    created_datetime: string;
+  content: string;
+  created_datetime: string;
+  uuid: string;
+  seen: boolean;
+  sender: {
     uuid: string;
-    seen: boolean;
-    sender: {
-        first_name: string;
-        last_name: string;
-        is_me: boolean;
-    };
+    is_me: boolean;
+  };
 };
 
+type LoadMessagesPayload = {
+  data: Message[];
+};
+
+type SeenEventPayload = {
+  data: {
+    message_id: string;
+    seen_status: boolean;
+  };
+};
+
+type NewMessagePayload = {
+  extra: {
+    clear_input: boolean;
+    is_me: boolean;
+  };
+  data: Message;
+};
 
 export const ChatDetail: React.FC<Props> = ({
   selectedChat,
@@ -53,7 +79,7 @@ export const ChatDetail: React.FC<Props> = ({
 
   const name = useUsersStore((state) => state.name);
   const teacher_uuid = useUsersStore((state) => state.userData?.uuid);
-  
+
   const { getConnection, releaseConnection } = useContext(SocketContext);
   const chatEndpoint = getWSChatURL(selectedChat);
   const chatSocket = getConnection(chatEndpoint);
@@ -70,7 +96,7 @@ export const ChatDetail: React.FC<Props> = ({
 
       if (onMessageSent) onMessageSent();
     },
-    [chatSocket, chatApp, onMessageSent]
+    [chatSocket, chatApp, onMessageSent],
   );
 
   useEffect(() => {
@@ -81,57 +107,59 @@ export const ChatDetail: React.FC<Props> = ({
       });
     });
 
-    chatSocket.on("message", "load_messages", (message: { data: any }) => {
-      const customMessage: any = {};
-      message.data.reverse().forEach((item: any) => {
-        customMessage[item.uuid] = {
-          ...item,
-          is_me: item.sender.uuid == teacher_uuid
-        };
-      });
+    chatSocket.on(
+      "message",
+      "load_messages",
+      (message: LoadMessagesPayload) => {
+        const customMessage: Record<string, Message> = {};
+        message.data.reverse().forEach((item) => {
+          customMessage[item.uuid] = {
+            ...item,
+            sender: {
+              ...item.sender,
+              is_me: item.sender.uuid === teacher_uuid,
+            },
+          };
+        });
 
-      setMessages(customMessage);
-      setLoadingMessageDetail(false);
-    });
+        setMessages(customMessage);
+        setLoadingMessageDetail(false);
+      },
+    );
 
-    chatSocket.on("event", "seen", (event: { data: any }) => {
-      const data = event.data
-      const message_id = data?.message_id
-      
-      if (!message_id || !(message_id in messages) || !(messages[message_id].sender.is_me))
+    chatSocket.on("event", "seen", (event: SeenEventPayload) => {
+      const data = event.data;
+      const message_id = data.message_id;
 
-        
-      setMessages(prevMessages => ({
+      if (
+        !message_id ||
+        !(message_id in messages) ||
+        !messages[message_id].sender.is_me
+      ) {
+        return;
+      }
+
+      setMessages((prevMessages) => ({
         ...prevMessages,
         [message_id]: {
           ...prevMessages[message_id],
-          seen: data.seen_status
-        }
-      }))
+          seen: data.seen_status,
+        },
+      }));
     });
 
-    chatSocket.on(
-      "message",
-      "new_message",
-      (message: {
-        extra: { clear_input: any; is_me: any };
-        data: {
-          uuid: any;
-          sender: { is_me: boolean };
-        };
-      }) => {
-        if (message?.extra && message.extra?.is_me) {
-          message.data.sender.is_me = true;
-        } else {
-          message.data.sender.is_me = false;
-        }
-        // let customMessage = { ...messages, [message.data.uuid]: message.data };
-        setMessages((prev: any) => ({
-          ...prev,
-          [message.data.uuid]: message.data,
-        }));
+    chatSocket.on("message", "new_message", (message: NewMessagePayload) => {
+      if (message.extra?.is_me) {
+        message.data.sender.is_me = true;
+      } else {
+        message.data.sender.is_me = false;
       }
-    );
+
+      setMessages((prev) => ({
+        ...prev,
+        [message.data.uuid]: message.data,
+      }));
+    });
 
     chatSocket.connect();
 
@@ -143,7 +171,6 @@ export const ChatDetail: React.FC<Props> = ({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
 
   return (
     <>
@@ -191,12 +218,12 @@ export const ChatDetail: React.FC<Props> = ({
         ) : (
           <>
             {messages &&
-              Object.values(messages).map((item: any) => (
+              Object.values(messages).map((item) => (
                 <ChatDetailItem
                   message={item}
                   selectedChat={selectedChat}
                   messagesEndRef={messagesEndRef}
-                  key={item?.uuid}
+                  key={item.uuid}
                 />
               ))}
           </>

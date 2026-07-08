@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Download } from "@mui/icons-material";
+import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import {
   Badge,
   Box,
@@ -16,18 +20,14 @@ import {
   TooltipProps,
   useMediaQuery,
 } from "@mui/material";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
-import { Download } from "@mui/icons-material";
-
 import theme from "theme";
 import { EyeIcon } from "uiKit";
-import { useStudentsStore } from "store/useStudents.store";
-import { useDashboardStore } from "store/useDashboard.store";
+import { LineChartKitDollar } from "uiKit/LineChartKitDollar";
+
 import { groupStatusMap, PersianConvertDate, studentStatusMap } from "core/utils";
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
-import { LineChartKitDollar } from "uiKit/LineChartKitDollar";
+import { useDashboardStore } from "store/useDashboard.store";
+import { useStudentsStore } from "store/useStudents.store";
 
 type Props = {
   open: boolean;

@@ -1,14 +1,12 @@
 import { Box, Paper, Typography } from "@mui/material";
-import { MainTable } from "components/financial";
-import { BreadCrumbsModel } from "core/types";
-import { HeaderLayout } from "layouts/header.layout";
 import theme from "theme";
 import {
   FinanceRequestIcons,
-  NoteIcon,
-  HandCoinIcon,
-  HandCardIcon,
 } from "uiKit";
+
+import { MainTable } from "components/financial";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts/header.layout";
 
 const breadcrumbData: BreadCrumbsModel[] = [
   {

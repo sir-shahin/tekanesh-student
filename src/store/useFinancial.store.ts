@@ -1,17 +1,17 @@
 import { create } from "zustand";
 
 import {
-    FinancialIncomeListDataTypes,
-    FinancialOverViewDataTypes,
-    FinancialStudentsIncomeListDataTypes,
-    AuditDetailFilterParams,
-    StudentIncomeFilterParams,
-} from "core/types";
-import {
     getFinancialIncomeList,
     getFinancialOverview,
     getFinancialStudentIncomeList,
 } from "core/services";
+import {
+    AuditDetailFilterParams,
+    FinancialIncomeListDataTypes,
+    FinancialOverViewDataTypes,
+    FinancialStudentsIncomeListDataTypes,
+    StudentIncomeFilterParams,
+} from "core/types";
 
 interface Props {
     fetching: boolean;

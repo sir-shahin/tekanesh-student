@@ -9,9 +9,9 @@ import {
 import {
     StudentDataTypes,
     StudentLevelDataTypes,
+    StudentsFilterParams,
     StudentsListDataTypes,
     StudentsStatsDataTypes,
-    StudentsFilterParams,
 } from "core/types";
 
 interface Props {

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { TextField, InputAdornment, IconButton, Box } from "@mui/material";
-
-import { AttachCircleIcons, SendTwoIcon } from "uiKit";
+import { Box,IconButton, InputAdornment, TextField } from "@mui/material";
 import theme from "theme";
+import { AttachCircleIcons, SendTwoIcon } from "uiKit";
 
 export const ChatTextInput: React.FC<{
     onSendMessage: (message: string) => void;

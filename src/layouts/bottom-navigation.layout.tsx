@@ -1,32 +1,32 @@
-import React, { useState, MouseEvent } from "react";
+import React, { MouseEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Box } from "@mui/material";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Box } from "@mui/material";
-
+import theme from "theme";
 import {
   DashboardIcon,
-  InvoicesIcon,
-  MarketingIcons,
-  MessagesIcons,
   // TaskIcons,
   EditIcons,
   ForumIcons,
-  ListIcons,
-  TaskIcons,
-  SupportIcons,
-  MonitorIcons,
   HomeworkIcons,
+  InvoicesIcon,
+  MessagesIcons,
+  MonitorIcons,
+  SupportIcons,
+  TaskIcons,
 } from "uiKit";
-import theme from "theme";
+
 import { useUnreadMessages } from "hooks/useUnreadMessages.hook";
+
+type IconRenderer = (color: string) => React.JSX.Element;
 
 interface NavigationItem {
   title: string;
-  icon: any;
+  icon: IconRenderer;
   link?: string;
   submenu?: NavigationItem[];
 }
@@ -34,51 +34,51 @@ interface NavigationItem {
 const BottomItems: NavigationItem[] = [
   {
     title: "داشبورد",
-    icon: (color: any) => <DashboardIcon color={color} />,
+    icon: (color: string) => <DashboardIcon color={color} />,
     link: "/student/dashboard",
   },
   {
     title: "جلسات",
-    icon: (color: any) => <MonitorIcons color={color} />,
+    icon: (color: string) => <MonitorIcons color={color} />,
     link: "/student/sessions",
   },
   {
     title: "دوره‌ها",
-    icon: (color: any) => <TaskIcons color={color} />,
+    icon: (color: string) => <TaskIcons color={color} />,
     link: "/student/courses",
   },
   {
     title: "پیام ها",
-    icon: (color: any) => <MessagesIcons color={color} />,
+    icon: (color: string) => <MessagesIcons color={color} />,
     link: "/student/messages",
   },
   {
     title: "بیشتـــــــــر",
-    icon: (color: any) => <MenuIcon color={color} />,
+    icon: (color: string) => <MenuIcon color={color} />,
     submenu: [
       {
         title: "گزارش مالی",
-        icon: (color: any) => <InvoicesIcon color={color} />,
+        icon: (color: string) => <InvoicesIcon color={color} />,
         link: "/student/financial-reports/sales-income",
       },
       {
         title: "تکالیف",
-        icon: (color: any) => <HomeworkIcons color={color} />,
+        icon: (color: string) => <HomeworkIcons color={color} />,
         link: "/student/assignments",
       },
       {
         title: "  حساب کاربــــــــری",
-        icon: (color: any) => <EditIcons color={color} />,
+        icon: (color: string) => <EditIcons color={color} />,
         link: "/student/account/general-info",
       },
       {
         title: "فــــــــــروم",
-        icon: (color: any) => <ForumIcons color={color} />,
+        icon: (color: string) => <ForumIcons color={color} />,
         link: "https://etekanesh.com/dashboard/go-to-forum/",
       },
       {
         title: "پشتیبانی",
-        icon: (color: any) => <SupportIcons color={color} />,
+        icon: (color: string) => <SupportIcons color={color} />,
         link: "/student/supports",
       },
     ],

@@ -1,20 +1,19 @@
-import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Box,
   Paper,
+  Tab,
+  Tabs,
   Typography,
   useMediaQuery,
-  Tabs,
-  Tab,
-  TextField,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
-
 import theme from "theme";
-import { ProfileForm, BankCard, ProfileSettings } from "components";
+import { EditIcons } from "uiKit";
+
+import { ProfileForm, ProfileSettings } from "components";
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts";
-import { EditIcons, WalletIcon, CustomButton, SettingIcon } from "uiKit";
 import { useUsersStore } from "store";
 
 const breadcrumbData: BreadCrumbsModel[] = [
@@ -26,14 +25,6 @@ const breadcrumbData: BreadCrumbsModel[] = [
     active: false,
   },
 ];
-
-interface BankFormData {
-  bankName: string;
-  shebaNumber: string;
-  cardNumber: string;
-  accountNumber: string;
-  cardHolderName: string;
-}
 
 export const GeneralInfoPage: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -50,24 +41,8 @@ export const GeneralInfoPage: React.FC = () => {
     }
   }, [location.pathname]);
 
-  const [bankFormData, setBankFormData] = useState<BankFormData>({
-    bankName: "",
-    shebaNumber: "",
-    cardNumber: "",
-    accountNumber: "",
-    cardHolderName: "",
-  });
-
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
-  };
-
-  const handleBankFormChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBankFormData({ ...bankFormData, [e.target.name]: e.target.value });
-  };
-
-  const handleBankFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
   const renderTabContent = () => {

@@ -1,7 +1,8 @@
-import { Box, Chip, Divider, LinearProgress } from "@mui/material";
-import PersianTypography from "core/utils/PersianTypoGraphy.utils";
-import theme from "theme";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+import { Box, Chip, Divider, LinearProgress } from "@mui/material";
+import theme from "theme";
+
+import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 
 export const LevelProgress = () => {
   return (

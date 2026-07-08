@@ -1,6 +1,7 @@
-import { Box, Typography, Avatar } from "@mui/material";
 import { ReactElement } from "react";
+import { Avatar, Box, Typography } from "@mui/material";
 import theme from "theme";
+
 import SemiCircleProgress from "./SemiCircular";
 
 interface RatingRowProps {
@@ -8,10 +9,16 @@ interface RatingRowProps {
   value?: number;
   color: string;
   icon: ReactElement;
-  chart?: any;
+  chart?: string;
 }
 
-export function RatingRow({ label, value = 0, color, icon, chart }: RatingRowProps) {
+export function RatingRow({
+  label,
+  value = 0,
+  color,
+  icon,
+  chart,
+}: RatingRowProps) {
   return (
     <Box
       display="flex"
@@ -26,7 +33,11 @@ export function RatingRow({ label, value = 0, color, icon, chart }: RatingRowPro
         <Avatar variant="rounded" sx={{ bgcolor: color }}>
           {icon}
         </Avatar>
-        <Typography fontSize={12} color={theme.palette.grey[500]} fontWeight={700}>
+        <Typography
+          fontSize={12}
+          color={theme.palette.grey[500]}
+          fontWeight={700}
+        >
           {typeof label === "string" ? label : "عنوان نامشخص"}
         </Typography>
       </Box>

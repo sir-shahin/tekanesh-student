@@ -7,9 +7,9 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-
 import theme from "theme";
 import { ListIcons } from "uiKit";
+
 import { useMarketingStore } from "store/useMarketing.store";
 
 export const SalesIncomeManagementWebinar: React.FC = () => {

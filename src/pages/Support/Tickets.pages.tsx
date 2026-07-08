@@ -1,11 +1,13 @@
+import React from "react";
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
+import theme from "theme";
+import { SupportIcons } from "uiKit";
+
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
-import theme from "theme";
-import React from "react";
-import { SupportIcons } from "uiKit";
-import TicketTabs from "../../components/support/TicketTabs";
+
 import NewTicketModal from "../../components/support/NewTicketModal";
+import TicketTabs from "../../components/support/TicketTabs";
 
 type Ticket = {
   id: string;
@@ -100,7 +102,7 @@ const TicketsBody: React.FC = () => {
 
   const handleNew = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleSubmit = (title: string, _body: string) => {
+  const handleSubmit = (title: string) => {
     const next: Ticket = {
       id: String(Date.now()).slice(-5),
       title,

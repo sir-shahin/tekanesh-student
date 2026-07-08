@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Paper } from "@mui/material";
-
 import theme from "theme";
-import { HeaderLayout } from "layouts/header.layout";
-import { BreadCrumbsModel } from "core/types";
+
 import { AssignmentList } from "components";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts/header.layout";
 import { useStudentsStore } from "store/useStudents.store";
 
 export const Timeline: React.FC = () => {

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
-
 import theme from "theme";
 import {
   PeopleIcons,
@@ -8,8 +7,9 @@ import {
   UserRemoveIcons,
   UserTickIcons,
 } from "uiKit";
-import { useMarketingStore } from "store/useMarketing.store";
+
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+import { useMarketingStore } from "store/useMarketing.store";
 
 type Props = {
   webinarId: string

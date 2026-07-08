@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Button, Divider, Menu, Typography } from "@mui/material";
 // import NotificationsActiveOutlinedIcon from "@mui/icons-material/NotificationsActiveOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-
+import { Box, Button, Divider, Menu, Typography } from "@mui/material";
 import theme from "theme";
-import MainLogo from "assets/main-logo.png";
+
 import AvatarImage from "assets/avatar-Image.png";
+import MainLogo from "assets/main-logo.png";
 import { useUsersStore } from "store/useUsers.store";
 
 export const HeaderMobileLayout: React.FC = () => {

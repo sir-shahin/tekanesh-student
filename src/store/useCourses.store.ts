@@ -1,6 +1,13 @@
 import { create } from "zustand";
 
 import {
+    getCoursesById,
+    getCoursesFeedback,
+    getCoursesLevelsAcademy,
+    getCoursesList,
+    getCoursesMeetings,
+} from "core/services/courses.services";
+import {
     ApiParams,
     CourseByIdDataTypes,
     CoursesFeedbackDataTypes,
@@ -8,13 +15,6 @@ import {
     CoursesListDataTypes,
     CoursesMeetingsDataTypes,
 } from "core/types";
-import {
-    getCoursesById,
-    getCoursesFeedback,
-    getCoursesLevelsAcademy,
-    getCoursesList,
-    getCoursesMeetings,
-} from "core/services/courses.services";
 
 interface Props {
     fetching: boolean;

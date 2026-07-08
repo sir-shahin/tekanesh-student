@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Chip, Drawer, Typography, useMediaQuery } from "@mui/material";
 import { DataGrid, GridRenderCellParams, GridSortModel } from "@mui/x-data-grid";
-
 import theme from "theme";
 import {
   ClipboardTextIcon,
@@ -9,6 +8,7 @@ import {
   ListIcons,
   PeopleIcons,
 } from "uiKit";
+
 import { useMarketingStore } from "store/useMarketing.store";
 
 type Props = {

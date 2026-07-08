@@ -6,9 +6,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { CourseInfo } from "./CoursesInfo";
-import { DocumentDownloadIcon } from "uiKit";
 import theme from "theme";
+import { DocumentDownloadIcon } from "uiKit";
+
+import { CourseInfo } from "./CoursesInfo";
 
 export const Lesson: React.FC = () => {
   return (
@@ -51,7 +52,7 @@ export const Lesson: React.FC = () => {
           </Box>
 
           <Typography mb={1}>
-            آشنایـــی با نحوه‌ی قیمت‌گــــذاری و ساخت مـــــدارک 
+            آشنایی با نحوه ی قیمت گذاری و ساخت مدارک
           </Typography>
           <Typography fontSize={12} color="gray">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با

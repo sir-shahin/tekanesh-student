@@ -1,10 +1,11 @@
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
+import theme from "theme";
+import { MonitorIcons } from "uiKit";
+
 import { CourseMeetings } from "components/courses";
 import { SessionFilterKit } from "components/sessions";
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
-import theme from "theme";
-import { MonitorIcons } from "uiKit";
 
 const breadcrumbData: BreadCrumbsModel[] = [
   {

@@ -1,5 +1,5 @@
 import axiosInstance from "core/config/axios.config";
-import { AuditDetailFilterParams, StudentIncomeFilterParams, AuditDetailApiResponse, StudentIncomeApiResponse } from "core/types";
+import { AuditDetailApiResponse, AuditDetailFilterParams, StudentIncomeApiResponse,StudentIncomeFilterParams } from "core/types";
 
 export const getFinancialOverview = async () => {
     const response = await axiosInstance.get(

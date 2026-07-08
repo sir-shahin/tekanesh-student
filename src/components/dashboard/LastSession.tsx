@@ -1,7 +1,8 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 import theme from "theme";
 import { CalendarIcon } from "uiKit";
+
+import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 
 export const LastSession = () => {
   return (

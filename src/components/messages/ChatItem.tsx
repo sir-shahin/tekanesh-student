@@ -1,11 +1,12 @@
-import React from "react";
-import { Box, Typography, Badge } from "@mui/material";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/fa";
 
+import React from "react";
+import { Badge,Box, Typography } from "@mui/material";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import theme from "theme";
 import { DoubleTickIcons, ProfileCircleIcons } from "uiKit";
+
 import { ChatType } from "core/types";
 
 dayjs.extend(relativeTime);

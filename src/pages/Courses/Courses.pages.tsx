@@ -7,25 +7,21 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-
-import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "core/types";
 import theme from "theme";
 import {
-  CalendarIcon,
   CameraIcon,
-  ChartIcon,
   InsightIcon,
   TaskIcons,
 } from "uiKit";
+
 import {
   CourseAds,
   CourseInfo,
   CourseList,
-  CourseMeetings,
-  CourseStatus,
   Lesson,
 } from "components";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts";
 import { useCoursesStore } from "store";
 
 function TabPanel(props: {

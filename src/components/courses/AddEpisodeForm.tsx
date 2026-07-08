@@ -8,10 +8,10 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-
-import { CustomButton, DocumentCourseIcon, DocumentUploadIcon } from "uiKit";
-import { postNewEpisodeCourse } from "core/services";
 import theme from "theme";
+import { CustomButton, DocumentCourseIcon, DocumentUploadIcon } from "uiKit";
+
+import { postNewEpisodeCourse } from "core/services";
 import { useCoursesStore } from "store/useCourses.store";
 
 type FormValues = {

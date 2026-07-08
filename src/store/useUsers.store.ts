@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-import { UsersDataTypes } from "core/types";
 import { getUser } from "core/services";
+import { UsersDataTypes } from "core/types";
 
 interface Props {
     fetching: boolean;
@@ -27,6 +27,7 @@ export const useUsersStore = create<Props>((set) => ({
                 fetching: false,
             });
         } catch (error) {
+            console.error(error)
             set({ hasError: true, fetching: false });
         }
     },

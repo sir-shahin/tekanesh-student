@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 import {
   Box,
   Chip,
@@ -8,8 +9,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
-
+import theme from "theme";
 import {
   ClipboardIcon,
   CustomButton,
@@ -18,11 +18,11 @@ import {
   ListIcons,
   NoteIcon,
 } from "uiKit";
-import theme from "theme";
 import { RichEditor } from "uiKit/RichTextKit";
-import { useStudentsStore } from "store/useStudents.store";
-import { PersianConvertDate } from "core/utils";
+
 import { postStudentsLevel } from "core/services";
+import { PersianConvertDate } from "core/utils";
+import { useStudentsStore } from "store/useStudents.store";
 
 const statusStyles: Record<number, any> = {
   [-3]: {

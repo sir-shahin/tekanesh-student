@@ -1,3 +1,4 @@
+import { Monitor } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -6,11 +7,10 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { BreadCrumbsModel } from "core/types";
-import { HeaderLayout } from "layouts/header.layout";
 
 import { CourseInfo, LevelProgress } from "components/courses";
-import { Monitor } from "@mui/icons-material";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts/header.layout";
 
 export default function CourseInfoPage() {
   const breadcrumbData: BreadCrumbsModel[] = [
