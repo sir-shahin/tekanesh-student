@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Divider, Typography } from "@mui/material";
-
+import theme from "theme";
 import {
   MonitorMobileIcons,
   PeopleIcons,
@@ -8,9 +8,9 @@ import {
   UserRemoveIcons,
   UserTickIcons,
 } from "uiKit";
-import theme from "theme";
-import { useFinancialStore } from "store/useFinancial.store";
+
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+import { useFinancialStore } from "store/useFinancial.store";
 
 export const IncomeDetailFinancial: React.FC = () => {
   const { overViewData } = useFinancialStore();

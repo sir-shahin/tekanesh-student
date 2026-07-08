@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { useUnreadMessages } from "hooks/useUnreadMessages.hook";
 import theme from "theme";
+
+import { useUnreadMessages } from "hooks/useUnreadMessages.hook";
 
 interface UnreadMessagesBadgeProps {
   size?: "small" | "medium" | "large";

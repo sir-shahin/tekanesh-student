@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import {
   Box,
   MenuItem,
@@ -7,9 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import { chartsGridClasses, LineChart } from "@mui/x-charts";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-
 import theme from "theme";
+
 import { useDashboardStore } from "store/useDashboard.store";
 
 export const LineChartKit: React.FC = () => {

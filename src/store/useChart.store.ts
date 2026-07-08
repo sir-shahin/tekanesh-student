@@ -5,7 +5,6 @@ import {
     getSummaryDollarStatus,
     getSummaryStatStudentStatus,
 } from "core/services";
-
 import { DollarMonthlyDataTypes, DollarSummaryDataTypes } from "core/types";
 
 interface Props {

@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from "react";
-
 import { Box, Stack, styled, Typography } from "@mui/material";
 import { pieArcLabelClasses, PieChart, useDrawingArea } from "@mui/x-charts";
-
 import theme from "theme";
+
 import { useDashboardStore } from "store/useDashboard.store";
 
 export const PieChartKit: React.FC = () => {
-  const months = [
-    "فروردین",
-    "اردیبهشت",
-    "خرداد",
-    "تیر",
-    "مرداد",
-    "شهریور",
-    "مهر",
-    "آبان",
-    "آذر",
-    "دی",
-    "بهمن",
-    "اسفند",
-  ];
-
   const today = new Date();
   const todayMonthIndex = +today.toLocaleDateString("fa-IR-u-nu-latn", {
     month: "2-digit",
@@ -33,32 +17,8 @@ export const PieChartKit: React.FC = () => {
   const { fetchDashboardMonthlyData, dashboardMonthlyData } =
     useDashboardStore();
 
-  const [currentMonthIndex, setCurrentMonthIndex] = useState(todayMonthIndex);
-  const [currentYear, setCurrentYear] = useState(todayYear);
-
-  const prevMonth = () => {
-    setCurrentMonthIndex((prev) => {
-      if (prev === 1) {
-        setCurrentYear((year) => year - 1);
-        return 12;
-      }
-      return prev - 1;
-    });
-  };
-
-  const nextMonth = () => {
-    setCurrentMonthIndex((prev) => {
-      if (prev === 12) {
-        setCurrentYear((year) => year + 1);
-        return 1;
-      }
-      return prev + 1;
-    });
-  };
-
-  const isNextDisabled =
-    currentYear > todayYear ||
-    (currentYear === todayYear && currentMonthIndex >= todayMonthIndex);
+  const [currentMonthIndex] = useState(todayMonthIndex);
+  const [currentYear] = useState(todayYear);
 
   const StyledText = styled("text")(() => ({
     textAnchor: "middle",

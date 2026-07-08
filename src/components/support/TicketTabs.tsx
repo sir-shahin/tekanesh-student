@@ -1,5 +1,6 @@
 import React from "react";
-import { Tabs, Tab, Box, Paper, Button } from "@mui/material";
+import { Box, Button,Paper, Tab, Tabs } from "@mui/material";
+
 import TicketTable, { TicketRow } from "./TicketTable";
 
 type Props = {

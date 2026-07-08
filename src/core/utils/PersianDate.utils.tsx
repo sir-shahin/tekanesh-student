@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import dayjs from 'dayjs';
 import 'dayjs/locale/fa';
+
+import { useEffect,useState } from "react";
+import dayjs from 'dayjs';
 
 dayjs.locale('fa');
 

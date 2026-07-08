@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Badge, Box, Chip, Typography, useMediaQuery } from "@mui/material";
 import {
   DataGrid,
@@ -7,7 +8,6 @@ import {
   GridRenderCellParams,
   GridSortModel,
 } from "@mui/x-data-grid";
-
 import theme from "theme";
 import {
   CustomButton,
@@ -15,14 +15,14 @@ import {
   MessagesMainIcons,
   StudentsTableFilterKit,
 } from "uiKit";
-import { useNavigate } from "react-router-dom";
-import { useStudentsStore } from "store/useStudents.store";
+
 import {
   groupStatusMap,
   MapStudentsToRows,
   studentStatusMap,
 } from "core/utils";
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+import { useStudentsStore } from "store/useStudents.store";
 import { useUsersStore } from "store/useUsers.store";
 
 type Props = {

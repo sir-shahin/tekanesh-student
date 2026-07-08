@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { Box, Button, styled } from "@mui/material";
 import { pieArcLabelClasses, PieChart, useDrawingArea } from "@mui/x-charts";
-
 import theme from "theme";
+
 import { useChartStore } from "store/useChart.store";
 
 export const PieChartKitDollar: React.FC = () => {

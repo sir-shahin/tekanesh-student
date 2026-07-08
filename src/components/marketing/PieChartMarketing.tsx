@@ -1,9 +1,8 @@
 import React from "react";
-
 import { Box, styled, Typography } from "@mui/material";
 import { pieArcLabelClasses, PieChart, useDrawingArea } from "@mui/x-charts";
-
 import theme from "theme";
+
 import { useMarketingStore } from "store/useMarketing.store";
 
 export const PieChartMarketing: React.FC = () => {

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { ArrowBackIos } from "@mui/icons-material";
 import {
     Box,
     Drawer,
@@ -6,16 +7,16 @@ import {
     Snackbar,
     useMediaQuery,
 } from "@mui/material";
-import { ArrowBackIos } from "@mui/icons-material";
-
 import theme from "theme";
-import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "core/types";
-import { useUsersStore } from "store/useUsers.store";
-import { SocketContext } from "../../contexts/SocketContext.contexts";
-import { getWSAppURL } from "core/services";
+
 import { AllMessages, ChatDetail } from "components/messages";
+import { getWSAppURL } from "core/services";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts";
 import { useChatsStore } from "store/useChat.store";
+import { useUsersStore } from "store/useUsers.store";
+
+import { SocketContext } from "../../contexts/SocketContext.contexts";
 
 const breadcrumbData: BreadCrumbsModel[] = [
     {

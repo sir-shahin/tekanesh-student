@@ -1,28 +1,28 @@
-import React, { useState, useRef } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Bold from "@tiptap/extension-bold";
-import Italic from "@tiptap/extension-italic";
-import Underline from "@tiptap/extension-underline";
-import TextAlign from "@tiptap/extension-text-align";
-import ListItem from "@tiptap/extension-list-item";
-import BulletList from "@tiptap/extension-bullet-list";
-import OrderedList from "@tiptap/extension-ordered-list";
-import Image from "@tiptap/extension-image";
-import { Box, IconButton, Divider, Popover, Tooltip, useMediaQuery } from "@mui/material";
+import React, { useRef,useState } from "react";
 import {
+    AttachFile,
+    FormatAlignCenter,
+    FormatAlignLeft,
+    FormatAlignRight,
     FormatBold,
     FormatItalic,
-    FormatUnderlined,
     FormatListBulleted,
     FormatListNumbered,
-    FormatAlignLeft,
-    FormatAlignCenter,
-    FormatAlignRight,
-    InsertEmoticon,
-    AttachFile,
+    FormatUnderlined,
     Image as ImageIcon,
+    InsertEmoticon,
 } from "@mui/icons-material";
+import { Box, Divider, IconButton, Popover, Tooltip, useMediaQuery } from "@mui/material";
+import Bold from "@tiptap/extension-bold";
+import BulletList from "@tiptap/extension-bullet-list";
+import Image from "@tiptap/extension-image";
+import Italic from "@tiptap/extension-italic";
+import ListItem from "@tiptap/extension-list-item";
+import OrderedList from "@tiptap/extension-ordered-list";
+import TextAlign from "@tiptap/extension-text-align";
+import Underline from "@tiptap/extension-underline";
+import { EditorContent,useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 
 type Props = {

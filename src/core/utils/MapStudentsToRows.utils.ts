@@ -1,5 +1,6 @@
-import { StudentsListDataTypes } from "core/types";
 import theme from "theme";
+
+import { StudentsListDataTypes } from "core/types";
 
 export const MapStudentsToRows = (
     students: StudentsListDataTypes[],

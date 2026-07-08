@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
-
 import theme from "theme";
-import { HeaderLayout } from "layouts/header.layout";
-import { BreadCrumbsModel } from "core/types";
 import { DocumentUploadIcon, HomeworkIcons } from "uiKit";
+
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts/header.layout";
 
 export const UploadAssignments: React.FC = () => {
   const { id } = useParams<{ id: string }>();

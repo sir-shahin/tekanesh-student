@@ -1,14 +1,14 @@
 import ReactDOM from "react-dom/client";
-import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
 import GlobalStyles from "@mui/material/GlobalStyles";
+import { ThemeProvider } from "@mui/material/styles";
 
 import { App } from "./App";
-import theme from "./theme";
-import { GlobalStyle } from "./global-style.style";
 import { SocketProvider } from "./contexts/SocketContext.contexts";
+import { GlobalStyle } from "./global-style.style";
+import theme from "./theme";
 
 const cacheRtl = createCache({
   key: "muirtl",

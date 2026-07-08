@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import {
     Box,
-    Typography,
     Modal,
     Paper,
     TextField,
+    Typography,
     useMediaQuery,
 } from "@mui/material";
-
-import { CustomButton, DocumentCourseIcon } from "uiKit";
 import theme from "theme";
-import { useCoursesStore } from "store/useCourses.store";
+import { CustomButton, DocumentCourseIcon } from "uiKit";
+
 import { postNewHeadlineCourse } from "core/services";
+import { useCoursesStore } from "store/useCourses.store";
+
 import { AddEpisodeForm } from "./AddEpisodeForm";
 
 type Props = {

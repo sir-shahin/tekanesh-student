@@ -1,9 +1,10 @@
 import { Box, Paper, Stack, Typography, useMediaQuery } from "@mui/material";
+import theme from "theme";
+import { MonitorIcons } from "uiKit";
+
 import { Ask, Details } from "components/sessions";
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
-import theme from "theme";
-import { MonitorIcons } from "uiKit";
 
 export const SessionDetails = () => {
   const isMobile = useMediaQuery("(max-width:768px)");

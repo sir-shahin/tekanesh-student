@@ -1,2 +1,2 @@
-export * from './Sessions.pages';
 export * from './Details.pages';
+export * from './Sessions.pages';

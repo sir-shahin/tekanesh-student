@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, TextField } from "@mui/material";
+import { CustomButton } from "uiKit";
 
 import { postLogin, postOtp } from "core/services";
-import { CustomButton } from "uiKit";
 
 export const LoginPages: React.FC = () => {
   const navigate = useNavigate();
@@ -14,12 +14,14 @@ export const LoginPages: React.FC = () => {
   });
   const [otpSent, setOtpSent] = useState(false);
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (otpSent) {
       e.preventDefault();
       postLogin(formData).then((res) => {

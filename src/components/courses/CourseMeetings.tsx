@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Chip,
-  Tooltip,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Link } from "react-router-dom";
+import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
+import { Box, Button, Chip, Typography, useMediaQuery } from "@mui/material";
 import {
   DataGrid,
   GridColDef,
   GridRenderCellParams,
   GridSortModel,
 } from "@mui/x-data-grid";
-import emptyImage from "assets/empty-state.jpg";
-
 import theme from "theme";
 import {
   CalendarIcon,
@@ -22,11 +15,23 @@ import {
   DocumentUploadIcon,
   VideoIcon,
 } from "uiKit";
-import { useCoursesStore } from "store/useCourses.store";
+
+import emptyImage from "assets/empty-state.jpg";
 import { PersianConvertDate } from "core/utils";
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
-import { Link } from "react-router-dom";
-import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
+import { useCoursesStore } from "store/useCourses.store";
+
+type CourseMeetingRow = {
+  id: string;
+  number: string;
+  week: string;
+  title: string;
+  date: string;
+  time?: string;
+  fileName?: string;
+  uploaded?: boolean;
+  status: string;
+};
 
 const generateWeek = (num: number) => {
   // `هفته ${["اول", "دوم", "سوم", "چهارم"][index % 4]}`;
@@ -76,7 +81,7 @@ const generateWeek = (num: number) => {
   ];
 
   function numberToWords(n: number) {
-    let parts = [];
+    const parts = [];
 
     if (n >= 100) {
       parts.push(hundreds[Math.floor(n / 100)]);
@@ -104,7 +109,7 @@ export const CourseMeetings: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const [sortModel, setSortModel] = useState<GridSortModel>([]);
 
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState<CourseMeetingRow[]>([]);
 
   const { fetchCoursesMeetingsData, fetching, coursesMeetingsData } =
     useCoursesStore();
@@ -116,21 +121,23 @@ export const CourseMeetings: React.FC = () => {
   };
 
   useEffect(() => {
-    const mapped: any = coursesMeetingsData.map((item, index) => {
-      const date = new Date(item?.meeting_datetime);
-      const now = new Date();
-      return {
-        id: item?.meeting_datetime,
-        number: String(coursesMeetingsData.length - index).padStart(2, "0"),
-        week: generateWeek(coursesMeetingsData.length - index),
-        title: item.course.title,
-        date: PersianConvertDate(item?.meeting_datetime),
-        time: item?.meeting_datetime?.split("T")[1]?.split(".")[0],
-        fileName: item?.meet_link,
-        uploaded: item.is_notified,
-        status: date < now ? "برگزار شده" : "برگزار نشـــــده",
-      };
-    });
+    const mapped: CourseMeetingRow[] = coursesMeetingsData.map(
+      (item, index) => {
+        const date = new Date(item?.meeting_datetime);
+        const now = new Date();
+        return {
+          id: item?.meeting_datetime,
+          number: String(coursesMeetingsData.length - index).padStart(2, "0"),
+          week: generateWeek(coursesMeetingsData.length - index),
+          title: item.course.title,
+          date: PersianConvertDate(item?.meeting_datetime),
+          time: item?.meeting_datetime?.split("T")[1]?.split(".")[0],
+          fileName: item?.meet_link,
+          uploaded: item.is_notified,
+          status: date < now ? "برگزار شده" : "برگزار نشـــــده",
+        };
+      },
+    );
     setRows(mapped);
   }, [fetching]);
 

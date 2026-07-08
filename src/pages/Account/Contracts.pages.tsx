@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
-
 import theme from "theme";
-import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "core/types";
 import { CustomButton, DocumentIcon } from "uiKit";
+
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts";
 
 const breadcrumbData: BreadCrumbsModel[] = [
     {

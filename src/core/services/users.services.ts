@@ -1,6 +1,8 @@
 import axiosInstance from "core/config/axios.config";
 import { UsersDataTypes } from "core/types";
 
+type LoginPayload = Record<string, string>;
+
 export const getUser = async () => {
     const response = await axiosInstance.get("/account/detail/");
     return response.data;
@@ -11,12 +13,12 @@ export const postUser = async (data: Partial<UsersDataTypes>) => {
     return response.data;
 };
 
-export const postLogin = async (data: any) => {
+export const postLogin = async (data: LoginPayload) => {
     const response = await axiosInstance.post("/account/login/", data);
     return response;
 };
 
-export const postOtp = async (data: any) => {
+export const postOtp = async (data: LoginPayload) => {
     const response = await axiosInstance.post("/account/otp/send/", data);
     return response;
 };

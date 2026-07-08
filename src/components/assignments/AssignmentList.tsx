@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
 import { Box, Button, Chip, Typography, useMediaQuery } from "@mui/material";
 import {
   DataGrid,
@@ -6,8 +8,6 @@ import {
   GridRenderCellParams,
   GridSortModel,
 } from "@mui/x-data-grid";
-import emptyImage from "assets/empty-state.jpg";
-
 import theme from "theme";
 import {
   CalendarIcon,
@@ -16,11 +16,23 @@ import {
   EyeIcon,
   VideoIcon,
 } from "uiKit";
-import { useCoursesStore } from "store/useCourses.store";
+
+import emptyImage from "assets/empty-state.jpg";
 import { PersianConvertDate } from "core/utils";
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
-import { Link } from "react-router-dom";
-import { CheckCircleOutline, ErrorOutlineOutlined } from "@mui/icons-material";
+import { useCoursesStore } from "store/useCourses.store";
+
+type AssignmentRow = {
+  id: string;
+  number: string;
+  week: string;
+  title: string;
+  date: string;
+  time?: string;
+  fileName?: string;
+  uploaded?: boolean;
+  status: string;
+};
 
 const generateWeek = (num: number) => {
   // `هفته ${["اول", "دوم", "سوم", "چهارم"][index % 4]}`;
@@ -70,7 +82,7 @@ const generateWeek = (num: number) => {
   ];
 
   function numberToWords(n: number) {
-    let parts = [];
+    const parts = [];
 
     if (n >= 100) {
       parts.push(hundreds[Math.floor(n / 100)]);
@@ -98,17 +110,18 @@ export const AssignmentListKit: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const [sortModel, setSortModel] = useState<GridSortModel>([]);
 
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState<AssignmentRow[]>([]);
 
   const { fetchCoursesMeetingsData, fetching, coursesMeetingsData } =
     useCoursesStore();
 
   const nowDate = (meetDate: string) => {
+    console.log(meetDate);
     return "تایید شده";
   };
 
   useEffect(() => {
-    const mapped: any = coursesMeetingsData.map((item, index) => {
+    const mapped: AssignmentRow[] = coursesMeetingsData.map((item, index) => {
       return {
         id: item?.meeting_datetime,
         number: String(coursesMeetingsData.length - index).padStart(2, "0"),

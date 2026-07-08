@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Box, Tabs, Tab, Typography, Badge, IconButton, Modal, CircularProgress, useMediaQuery } from "@mui/material";
+import { Badge, Box, CircularProgress, IconButton, Modal, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import theme from "theme";
 import { EditTwoIcons, SearchInput } from "uiKit";
-import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+
 import { ChatType } from "core/types";
-import { ContactListModal } from "./ContactListModal";
+import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+
 import { ChatItem } from "./ChatItem";
+import { ContactListModal } from "./ContactListModal";
 
 type Props = {
     data: ChatType[];

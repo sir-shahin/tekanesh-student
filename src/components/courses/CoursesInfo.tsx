@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
+import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
+import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
 import {
     Accordion,
-    AccordionSummary,
     AccordionDetails,
+    AccordionSummary,
     Box,
-    Typography,
     IconButton,
+    Typography,
     useMediaQuery,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-
-import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
-import { MenuIcon, VideoIcon } from "uiKit";
 import theme from "theme";
+import { MenuIcon, VideoIcon } from "uiKit";
+
+import { postEditEpisodeCourse } from "core/services";
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 import { useCoursesStore } from "store/useCourses.store";
-import { postEditEpisodeCourse } from "core/services";
 
 type Props = {
     courseId: string;

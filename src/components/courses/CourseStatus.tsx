@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import { ClockIcon } from "@mui/x-date-pickers/icons";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
-
-import { ForumIcons, MarketingWebinarIcons, PeopleIcons } from "uiKit";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { ClockIcon } from "@mui/x-date-pickers/icons";
 import theme from "theme";
-import PersianTypography from "core/utils/PersianTypoGraphy.utils";
-import { useCoursesStore } from "store/useCourses.store";
-import { RatingRow } from "./RatingRow";
-import yellow from "assets/yellow-chart.png";
+import { ForumIcons, MarketingWebinarIcons, PeopleIcons } from "uiKit";
+
+import blue from "assets/blue-chart.png";
 import green from "assets/green-chart.png";
 import primary from "assets/primary-chart.png";
 import red from "assets/red-chart.png";
-import blue from "assets/blue-chart.png";
+import yellow from "assets/yellow-chart.png";
+import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+import { useCoursesStore } from "store/useCourses.store";
+
 import { CustomBarChart } from "./CustomBarChart";
+import { RatingRow } from "./RatingRow";
 
 export const CourseStatus: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");

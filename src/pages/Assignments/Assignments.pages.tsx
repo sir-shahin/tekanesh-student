@@ -1,12 +1,13 @@
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
+import theme from "theme";
+import { HomeworkIcons } from "uiKit";
+
 import {
   AssignmentListKit,
   AssignmentsFilterKit,
 } from "components/assignments";
 import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts/header.layout";
-import theme from "theme";
-import { HomeworkIcons } from "uiKit";
 
 const breadcrumbData: BreadCrumbsModel[] = [
   {

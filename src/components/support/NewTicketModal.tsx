@@ -1,16 +1,15 @@
 import React from "react";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  TextField,
   Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
   Typography,
 } from "@mui/material";
-import theme from "theme";
-import { MessagesIcons, MessagesMainIcons } from "uiKit";
+import { MessagesMainIcons } from "uiKit";
 
 type Props = {
   open: boolean;

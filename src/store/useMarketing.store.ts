@@ -1,14 +1,6 @@
 import { create } from "zustand";
 
 import {
-    CodesDataTypes,
-    DirectSaleSummaryDataTypes,
-    WebinarsByIdDataTypes,
-    WebinarsDataTypes,
-    WebinarsHeldDataTypes,
-    WebinarsHeldDetailDataTypes,
-} from "core/types";
-import {
     getDirectSaleCodes,
     getDirectSaleSummary,
     getWebinars,
@@ -16,6 +8,14 @@ import {
     getWebinarsHeld,
     getWebinarsHeldDetails,
 } from "core/services";
+import {
+    CodesDataTypes,
+    DirectSaleSummaryDataTypes,
+    WebinarsByIdDataTypes,
+    WebinarsDataTypes,
+    WebinarsHeldDataTypes,
+    WebinarsHeldDetailDataTypes,
+} from "core/types";
 
 interface Props {
     fetching: boolean;

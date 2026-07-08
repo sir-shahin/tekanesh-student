@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { DataGrid, GridColDef, GridRenderCellParams, GridSortModel } from "@mui/x-data-grid";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import DoneIcon from "@mui/icons-material/Done";
 import PriorityHighRoundedIcon from "@mui/icons-material/PriorityHighRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import {
   Badge,
   Box,
@@ -11,9 +10,10 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-
+import { DataGrid, GridColDef, GridRenderCellParams, GridSortModel } from "@mui/x-data-grid";
 import theme from "theme";
 import { CustomNoRowsOverlay, CustomPagination } from "uiKit";
+
 import { useMarketingStore } from "store/useMarketing.store";
 
 export const DirectSaleTeacherTable: React.FC = () => {

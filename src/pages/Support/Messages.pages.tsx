@@ -1,6 +1,5 @@
 import {
   CheckCircleOutline,
-  Edit,
   ErrorOutlineOutlined,
 } from "@mui/icons-material";
 import {
@@ -13,19 +12,16 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { BreadCrumbsModel } from "core/types";
-import { HeaderLayout } from "layouts/header.layout";
 import theme from "theme";
 import {
-  EditIcons,
   LampIcon,
-  NoteIcon,
   PenEditIcon,
-  PeopleIcons,
-  ProfileCircleIcons,
   SupportIcons,
 } from "uiKit";
 import { RichEditor } from "uiKit/RichTextKit";
+
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts/header.layout";
 
 export default function TicketMessages() {
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -46,7 +42,7 @@ export default function TicketMessages() {
     },
   ];
 
-  const handleEditorChange = (html: string) => {};
+  const handleEditorChange = () => {};
   return (
     <>
       <HeaderLayout title=" پشتیبانـــــــی" breadcrumb={breadcrumbData} />

@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { styled, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import IconButton from "@mui/material/IconButton";
-import WestIcon from "@mui/icons-material/West";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import EastIcon from "@mui/icons-material/East";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import RemoveIcon from "@mui/icons-material/Remove";
+import WestIcon from "@mui/icons-material/West";
+import { Collapse, Divider, Typography, useMediaQuery } from "@mui/material";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiDrawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import RemoveIcon from "@mui/icons-material/Remove";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-
+import { CSSObject, styled, Theme } from "@mui/material/styles";
 import theme from "theme";
-
-import MainLogo from "assets/main-logo.png";
-import Logo from "assets/logo.png";
-import { Collapse, Divider, Typography, useMediaQuery } from "@mui/material";
 import {
   DashboardIcon,
   EditIcons,
@@ -28,24 +24,26 @@ import {
   ForumIcons,
   HomeworkIcons,
   InvoicesIcon,
-  ListIcons,
-  MarketingIcons,
   MessagesIcons,
   MonitorIcons,
-  MonitorMobileIcons,
-  NoteIcon,
   SupportIcons,
   TaskIcons,
 } from "uiKit";
-import { BottomNavigationLayout } from "./bottom-navigation.layout";
-import { HeaderMobileLayout } from "./header-mobile.layout";
-import { useUsersStore } from "store/useUsers.store";
+
+import Logo from "assets/logo.png";
+import MainLogo from "assets/main-logo.png";
 import { getRoleName } from "core/utils";
 import { useUnreadMessages } from "hooks/useUnreadMessages.hook";
+import { useUsersStore } from "store/useUsers.store";
+
+import { BottomNavigationLayout } from "./bottom-navigation.layout";
+import { HeaderMobileLayout } from "./header-mobile.layout";
+
+type IconRenderer = (color: string) => React.JSX.Element;
 
 type SideMenu = {
   title: string;
-  icon: (color: any) => React.JSX.Element;
+  icon: IconRenderer;
   link: string;
   child?: {
     title: string;
@@ -113,38 +111,38 @@ const Drawer = styled(MuiDrawer, {
 const SidebarMenu: SideMenu = [
   {
     title: "داشبـــــــــورد",
-    icon: (color: any) => <DashboardIcon color={color} />,
+    icon: (color: string) => <DashboardIcon color={color} />,
     link: "/student/dashboard",
   },
   {
     title: "دوره ها",
-    icon: (color: any) => <TaskIcons color={color} />,
+    icon: (color: string) => <TaskIcons color={color} />,
     link: "/student/courses",
   },
   {
     title: "جلسات هفتگی",
-    icon: (color: any) => <MonitorIcons color={color} />,
+    icon: (color: string) => <MonitorIcons color={color} />,
     link: "/student/sessions",
   },
   {
     title: "تکالیـــــــــف",
-    icon: (color: any) => <HomeworkIcons color={color} />,
+    icon: (color: string) => <HomeworkIcons color={color} />,
     link: "/student/assignments",
   },
   {
     title: "پیــــــــام ها",
-    icon: (color: any) => <MessagesIcons color={color} />,
+    icon: (color: string) => <MessagesIcons color={color} />,
     link: "/student/messages",
   },
   {
     title: "فــــــــــروم ",
-    icon: (color: any) => <ForumIcons color={color} />,
+    icon: (color: string) => <ForumIcons color={color} />,
     link: "https://etekanesh.com/dashboard/go-to-forum/",
   },
 
   {
     title: "گزارش مالــــــی",
-    icon: (color: any) => <InvoicesIcon color={color} />,
+    icon: (color: string) => <InvoicesIcon color={color} />,
     link: "/student/financial-reports",
     // child: [
     //   {
@@ -161,12 +159,12 @@ const SidebarMenu: SideMenu = [
   },
   {
     title: " ویرایش حساب کاربــــــــری ",
-    icon: (color: any) => <EditIcons color={color} />,
+    icon: (color: string) => <EditIcons color={color} />,
     link: "/student/account/general-info",
   },
   {
     title: "پشتیبانـــــــی",
-    icon: (color: any) => <SupportIcons color={color} />,
+    icon: (color: string) => <SupportIcons color={color} />,
     link: "/student/supports",
   },
 ];
@@ -182,7 +180,7 @@ export const MainLayout: React.FC = () => {
   const [open, setOpen] = useState(true);
   const [isRoleChecked, setIsRoleChecked] = useState(false);
 
-  const [openSubMenu, setOpenSubMenu] = useState<any>({});
+  const [openSubMenu, setOpenSubMenu] = useState<Record<string, boolean>>({});
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => {
@@ -191,10 +189,10 @@ export const MainLayout: React.FC = () => {
   };
 
   const handleToggleSubMenu = (title: string) => {
-    setOpenSubMenu((prev: any) => ({ ...prev, [title]: !prev[title] }));
+    setOpenSubMenu((prev) => ({ ...prev, [title]: !prev[title] }));
   };
 
-  const handleItemClick = (item: any) => {
+  const handleItemClick = (item: { child?: { link: string }[] }) => {
     if (item.child) {
       if (!open) {
         navigate(item.child[0].link);

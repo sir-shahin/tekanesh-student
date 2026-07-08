@@ -1,14 +1,13 @@
 import React from "react";
-import { Box, Chip, Divider, Typography, useMediaQuery } from "@mui/material";
+import ArrowCircleDownRoundedIcon from "@mui/icons-material/ArrowCircleDownRounded";
 // import { SparkLineChart } from "@mui/x-charts";
 import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
-import ArrowCircleDownRoundedIcon from "@mui/icons-material/ArrowCircleDownRounded";
-
-
+import { Box, Chip, Divider, Typography, useMediaQuery } from "@mui/material";
 import theme from "theme";
 import { CardCoinIcons, PeopleIcons, ProfileTickIcons } from "uiKit";
-import { useStudentsStore } from "store/useStudents.store";
+
 import PersianTypography from "core/utils/PersianTypoGraphy.utils";
+import { useStudentsStore } from "store/useStudents.store";
 
 export const InfoStudents: React.FC = () => {
   const { studentsStatsData } = useStudentsStore();

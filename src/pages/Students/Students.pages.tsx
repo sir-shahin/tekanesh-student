@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Box, Paper } from "@mui/material";
-
-import { HeaderLayout } from "layouts";
+import { GridRenderCellParams } from "@mui/x-data-grid";
 import theme from "theme";
-import { BreadCrumbsModel } from "core/types";
+
 import {
   DrawerStudents,
   InfoStudents,
   ListStudentsTitle,
   TableStudents,
 } from "components";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts";
 import { useStudentsStore } from "store";
-import { GridRenderCellParams } from "@mui/x-data-grid";
 
 const breadcrumbData: BreadCrumbsModel[] = [
   {

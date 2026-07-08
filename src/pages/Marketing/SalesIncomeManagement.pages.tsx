@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Menu, MenuItem, Paper, Typography } from "@mui/material";
-
 import theme from "theme";
-import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "core/types";
 import { MarketingIcons, NoteIcon } from "uiKit";
+
 import {
   PieChartMarketing,
-  SalesIncomeManagementWebinar,
   SalesIncomeManagementInfo,
+  SalesIncomeManagementWebinar,
 } from "components/marketing";
+import { BreadCrumbsModel } from "core/types";
+import { HeaderLayout } from "layouts";
 import { useMarketingStore } from "store/useMarketing.store";
 
 const breadcrumbData: BreadCrumbsModel[] = [
