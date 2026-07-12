@@ -1,6 +1,7 @@
 import "../../styles/datepicker.css";
 
 import React, { useEffect, useMemo, useState } from "react";
+import DateObject from "react-date-object";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import DatePicker from "react-multi-date-picker";
@@ -40,10 +41,6 @@ import { useFinancialStore } from "store/useFinancial.store";
 
 // Create rtl cache - moved inside component to avoid SSR issues
 
-type DatePickerValue = {
-  format: (pattern: string) => string;
-};
-
 interface FinancialData {
   id: number;
   invoiceID: { id: number };
@@ -81,8 +78,8 @@ export const TableFinancial: React.FC = () => {
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [selectedPackageName, setSelectedPackageName] = useState("");
   const [selectedCourseName, setSelectedCourseName] = useState("");
-  const [fromDate, setFromDate] = useState<DatePickerValue | null>(null);
-  const [toDate, setToDate] = useState<DatePickerValue | null>(null);
+  const [fromDate, setFromDate] = useState<DateObject | null>(null);
+  const [toDate, setToDate] = useState<DateObject | null>(null);
 
   // Debounce search query to prevent too many API calls
   useEffect(() => {

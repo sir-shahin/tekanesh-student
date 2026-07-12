@@ -44,6 +44,8 @@ type Message = {
   sender: {
     uuid: string;
     is_me: boolean;
+    first_name?: string;
+    last_name?: string;
   };
 };
 

@@ -54,7 +54,7 @@ const BottomItems: NavigationItem[] = [
   },
   {
     title: "بیشتـــــــــر",
-    icon: (color: string) => <MenuIcon color={color} />,
+    icon: (color: string) => <MenuIcon color={color as "primary"} />,
     submenu: [
       {
         title: "گزارش مالی",

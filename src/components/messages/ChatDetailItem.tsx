@@ -15,8 +15,8 @@ type Message = {
   uuid: string;
   seen: boolean;
   sender: {
-    first_name: string;
-    last_name: string;
+    first_name?: string;
+    last_name?: string;
     is_me: boolean;
   };
 };
@@ -24,7 +24,7 @@ type Message = {
 type Props = {
   selectedChat: string;
   message: Message;
-  messagesEndRef: React.RefObject<HTMLDivElement>;
+  messagesEndRef: React.RefObject<HTMLDivElement | null>;
 };
 export const ChatDetailItem: React.FC<Props> = ({
   message,

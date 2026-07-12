@@ -12,6 +12,10 @@ import {
 import theme from "theme";
 import { SearchCustomIcon } from "uiKit";
 
+type FilterItems = {
+  level_statuses?: Record<string, string>;
+};
+
 type Props = {
   searchQuery: string;
   setSearchQuery: (v: string) => void;
@@ -24,7 +28,7 @@ type Props = {
 
   triggerSearch: () => void;
 
-  filterItems?: Record<string, unknown>;
+  filterItems?: FilterItems;
 };
 
 export const CoursesFilterKit: React.FC<Props> = ({

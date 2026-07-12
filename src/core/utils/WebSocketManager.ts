@@ -161,8 +161,8 @@ export default class WebSocketManager {
             console.warn(`Invalid event type: ${event}`);
             return;
         }
-
-        this.eventListeners[event].push(listener);
+        console.log(listener)
+        // this.eventListeners[event].push(listener);
     }
 
 
@@ -171,27 +171,27 @@ export default class WebSocketManager {
             console.warn(`Invalid event type: ${event}`);
             return;
         }
-
-        this.eventListeners[event] = this.eventListeners[event].filter(
-            l => l !== listener
-        );
+        console.log(listener)
+        // this.eventListeners[event] = this.eventListeners[event].filter(
+        //     l => l !== listener
+        // );
     }
 
     on<T extends keyof MessageHandlers>(
         messageType: T,
         action: string,
-        handler: (message: Extract<SocketData, { type: T }>) => void
+        handler: (message: any) => void
     ): void;
 
     on<T extends keyof MessageHandlers>(
         messageType: T,
-        handler: (message: Extract<SocketData, { type: T }>) => void
+        handler: (message: any) => void
     ): void;
 
     on(
         messageType: keyof MessageHandlers,
-        actionOrHandler?: string | ((message: SocketData) => void),
-        handler?: (message: SocketData) => void
+        actionOrHandler?: string | ((message: any) => void),
+        handler?: (message: any) => void
     ): void {
         if (!this.messageHandlers[messageType]) {
             console.error(`Invalid message type: ${messageType}`);
@@ -281,7 +281,8 @@ export default class WebSocketManager {
         if (this.eventListeners[event]) {
             this.eventListeners[event].forEach((listener) => {
                 try {
-                    listener(data as Event);
+                    // listener(data as Event);
+                    console.log(listener,data)
                 } catch (error) {
                     console.error(`Error in ${event} event listener:`, error);
                 }

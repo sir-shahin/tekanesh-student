@@ -34,7 +34,7 @@ type Props = {
   clearAllFilters: () => void;
   hasActiveFilters: boolean | string;
 
-  filterItems: Record<string, unknown>;
+  filterItems: Record<string, unknown> | null;
 };
 
 export const StudentsTableFilterKit: React.FC<Props> = ({
