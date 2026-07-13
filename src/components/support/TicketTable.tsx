@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import theme from "theme";
 import { EyeIcon } from "uiKit";
+import { Link } from "react-router-dom";
 
 export type TicketRow = {
   id: string;
@@ -77,23 +78,24 @@ export const TicketTable: React.FC<Props> = ({ rows }) => {
                 />
               </TableCell>
               <TableCell align="right">
-                <Button
-                  href={`/student/supports/10`}
-                  sx={{
-                    border: 1,
-                    borderColor: "#ccc",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 40,
-                    width: 40,
-                    minWidth: "unset",
-                    borderRadius: 2,
-                    px: 0,
-                  }}
-                >
-                  <EyeIcon width={22} height={22} />
-                </Button>
+                <Link to={`/student/supports/10`}>
+                  <Button
+                    sx={{
+                      border: 1,
+                      borderColor: "#ccc",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: 40,
+                      width: 40,
+                      minWidth: "unset",
+                      borderRadius: 2,
+                      px: 0,
+                    }}
+                  >
+                    <EyeIcon width={22} height={22} />
+                  </Button>
+                </Link>
               </TableCell>
             </TableRow>
           ))}
