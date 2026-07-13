@@ -138,8 +138,8 @@ export const BottomNavigationLayout: React.FC = () => {
               label={item.title}
               icon={item.icon(
                 location.pathname === item.link
-                  ? theme.palette.primary[600]
-                  : theme.palette.grey[600],
+                  ? (theme.palette.primary[600] ?? theme.palette.primary.main)
+                  : (theme.palette.grey[600] ?? theme.palette.grey[500]),
               )}
               onClick={handleMenuOpen}
             />
@@ -151,10 +151,11 @@ export const BottomNavigationLayout: React.FC = () => {
                 <Box position="relative">
                   {item.icon(
                     item.link === "/"
-                      ? theme.palette.grey[300]
+                      ? (theme.palette.grey[300] ?? theme.palette.grey[400])
                       : location.pathname === item.link
-                        ? theme.palette.primary[600]
-                        : theme.palette.grey[600],
+                        ? (theme.palette.primary[600] ??
+                          theme.palette.primary.main)
+                        : (theme.palette.grey[600] ?? theme.palette.grey[500]),
                   )}
                   {item.title === "پیام ها" && totalUnreadMessages > 0 && (
                     <Box
@@ -202,10 +203,11 @@ export const BottomNavigationLayout: React.FC = () => {
               sx={{
                 color:
                   item.link === "/"
-                    ? theme.palette.grey[300]
+                    ? (theme.palette.grey[300] ?? theme.palette.grey[400])
                     : location.pathname === item.link
-                      ? theme.palette.primary[600]
-                      : theme.palette.grey[600],
+                      ? (theme.palette.primary[600] ??
+                        theme.palette.primary.main)
+                      : (theme.palette.grey[600] ?? theme.palette.grey[500]),
                 fontSize: "12px",
                 cursor: item.link === "/" ? "not-allowed" : "pointer",
               }}
@@ -282,10 +284,10 @@ export const BottomNavigationLayout: React.FC = () => {
             sx={{
               color:
                 subItem.link === "/"
-                  ? theme.palette.grey[400]
+                  ? (theme.palette.grey[400] ?? theme.palette.grey[500])
                   : location.pathname === subItem.link
-                    ? theme.palette.primary[600]
-                    : theme.palette.grey[600],
+                    ? (theme.palette.primary[600] ?? theme.palette.primary.main)
+                    : (theme.palette.grey[600] ?? theme.palette.grey[500]),
               fontSize: "12px",
               cursor: subItem.link === "/" ? "not-allowed" : "pointer",
             }}
@@ -293,8 +295,8 @@ export const BottomNavigationLayout: React.FC = () => {
             <Box display={"flex"} gap={"4px"} alignItems="center">
               {subItem.icon(
                 subItem.link && location.pathname === subItem.link
-                  ? theme.palette.primary[600]
-                  : theme.palette.grey[600],
+                  ? (theme.palette.primary[600] ?? theme.palette.primary.main)
+                  : (theme.palette.grey[600] ?? theme.palette.grey[500]),
               )}{" "}
               {subItem.title}
             </Box>

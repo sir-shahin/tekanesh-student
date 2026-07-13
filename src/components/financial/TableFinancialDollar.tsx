@@ -3,6 +3,7 @@ import "../../styles/datepicker.css";
 import React, { useEffect, useMemo, useState } from "react";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import DateObject from "react-date-object";
 import DatePicker from "react-multi-date-picker";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
@@ -41,10 +42,6 @@ import { CustomPagination } from "uiKit";
 import { PersianConvertDate } from "core/utils";
 import { useFinancialStore } from "store/useFinancial.store";
 
-type DatePickerValue = {
-  format: (pattern: string) => string;
-};
-
 export const TableFinancialDollar: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const {
@@ -65,8 +62,8 @@ export const TableFinancialDollar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
-  const [fromDate, setFromDate] = useState<DatePickerValue | null>(null);
-  const [toDate, setToDate] = useState<DatePickerValue | null>(null);
+  const [fromDate, setFromDate] = useState<DateObject | null>(null); // ✅ Use DateObject
+  const [toDate, setToDate] = useState<DateObject | null>(null); // ✅ Use DateObject
 
   // Debounce search query to prevent too many API calls
   useEffect(() => {

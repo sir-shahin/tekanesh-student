@@ -185,14 +185,17 @@ export const MainLayout: React.FC = () => {
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => {
     setOpen(false);
-    setOpenSubMenu(false);
+    setOpenSubMenu({});
   };
 
   const handleToggleSubMenu = (title: string) => {
     setOpenSubMenu((prev) => ({ ...prev, [title]: !prev[title] }));
   };
 
-  const handleItemClick = (item: { child?: { link: string }[] }) => {
+  const handleItemClick = (item: {
+    title: string;
+    child?: { link: string }[];
+  }) => {
     if (item.child) {
       if (!open) {
         navigate(item.child[0].link);
@@ -440,8 +443,8 @@ export const MainLayout: React.FC = () => {
                             >
                               {item?.icon(
                                 isActive
-                                  ? theme.palette.primary[600]
-                                  : theme.palette.grey[600],
+                                  ? (theme.palette.primary[600] ?? "")
+                                  : (theme.palette.grey[600] ?? ""),
                               )}
                             </ListItemIcon>
                             {open && (

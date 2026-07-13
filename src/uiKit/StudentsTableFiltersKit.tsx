@@ -13,6 +13,13 @@ import theme from "theme";
 
 import { SearchCustomIcon } from "./icons";
 
+// Define a precise type for filterItems to fix the indexing error
+type FilterItems = {
+  level_statuses?: Record<string, string>;
+  kyc_statuses?: Record<string, string>;
+  grouplancingStatusOptions?: Record<string, string>;
+} | null;
+
 type Props = {
   searchQuery: string;
   setSearchQuery: (v: string) => void;
@@ -34,7 +41,7 @@ type Props = {
   clearAllFilters: () => void;
   hasActiveFilters: boolean | string;
 
-  filterItems: Record<string, unknown> | null;
+  filterItems: FilterItems; // updated type
 };
 
 export const StudentsTableFilterKit: React.FC<Props> = ({

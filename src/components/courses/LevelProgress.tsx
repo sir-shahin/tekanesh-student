@@ -131,7 +131,7 @@ export const LevelProgress = () => {
           </Box>
 
           <PersianTypography
-            sx={{ position: "absolute", top: "25%", left: "33%" }}
+            sx={{ position: "absolute", top: "25%", right: "33%" }}
             fontSize={"12px"}
             fontWeight={700}
             color="white"
